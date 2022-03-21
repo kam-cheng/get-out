@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "get-out",
+    "slug": "get-out",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
