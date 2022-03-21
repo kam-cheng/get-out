@@ -21,7 +21,7 @@ export default function Activities() {
       <FlatList
         data={usersList}
         renderItem={({ item }) => (
-          <Text id={item.Name}>
+          <Text id={item.id}>
             {`Name: ${item.Name}
              Rating: ${item.Rating}`}
           </Text>
@@ -31,7 +31,7 @@ export default function Activities() {
       <FlatList
         data={activitiesList}
         renderItem={({ item }) => (
-          <Text id={item.Activity}>
+          <Text id={item.id}>
             {`Activity: ${item.Activity}
              Category: ${item.Category}
              Date: ${item.Date.toDate()}

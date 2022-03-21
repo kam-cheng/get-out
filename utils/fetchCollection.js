@@ -5,8 +5,11 @@ const fetchCollection = async (name) => {
   const collectionArray = [];
   const collection = await firestore().collection(name).get();
   collection.forEach((item) => {
+    const newItem = item.data();
+    // get document id and assign it to object
+    newItem.id = item.id;
     // .data() is a method for getting data
-    collectionArray.push(item.data());
+    collectionArray.push(newItem);
   });
   return collectionArray;
 };
