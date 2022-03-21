@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import firestore from "@react-native-firebase/firestore";
 
 export default function App() {
   return (
