@@ -1,39 +1,18 @@
-// In App.js in a new project
-
 import * as React from "react";
-import { View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "./screens/Home";
+import ProfileScreen from "./screens/Profile";
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
