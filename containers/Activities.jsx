@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, Text } from "react-native";
-import fetchCollection from "../utils/fetchCollection";
+import fetchCollection from "../api/fetchCollection";
 
 export default function Activities() {
   const [usersList, setUsersList] = useState([]);
