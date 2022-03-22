@@ -34,7 +34,7 @@ export default function Activities() {
           <Text id={item.id}>
             {`Activity: ${item.Activity}
              Category: ${item.Category}
-             Date: ${item.Date.toDate()}
+             Date: ${item.Date}
              Description: ${item.Description}
              Image: ${item.Image}
              Location: ${item.Location}
