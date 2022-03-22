@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 
 export default function OrganiseForm({ navigation }) {
@@ -37,28 +38,34 @@ export default function OrganiseForm({ navigation }) {
   }
 
   return (
-    <SafeAreaView>
-      <Text>Activity</Text>
-      <TextInput style={styles.input} onChangeText={setActivity} />
-      <Text>Category</Text>
-      <TextInput style={styles.input} onChangeText={setCategory} />
-      <Text>Date</Text>
-      <TextInput style={styles.input} onChangeText={setDate} />
-      <Text>Description</Text>
-      <TextInput style={styles.input} onChangeText={setDescription} multiline />
-      <Text>Image</Text>
-      <TextInput style={styles.input} onChangeText={setImage} />
-      <Text>Location</Text>
-      <TextInput style={styles.input} onChangeText={setLocation} />
-      <Text>Organiser</Text>
-      <TextInput style={styles.input} onChangeText={setOrganiser} />
-      <Button
-        onPress={submitActivity}
-        title="Submit"
-        color="#841584"
-        accessibilityLabel="Submit form for activity"
-      />
-    </SafeAreaView>
+    <KeyboardAwareScrollView>
+      <SafeAreaView>
+        <Text>Activity</Text>
+        <TextInput style={styles.input} onChangeText={setActivity} />
+        <Text>Category</Text>
+        <TextInput style={styles.input} onChangeText={setCategory} />
+        <Text>Date</Text>
+        <TextInput style={styles.input} onChangeText={setDate} />
+        <Text>Description</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setDescription}
+          multiline
+        />
+        <Text>Image</Text>
+        <TextInput style={styles.input} onChangeText={setImage} />
+        <Text>Location</Text>
+        <TextInput style={styles.input} onChangeText={setLocation} />
+        <Text>Organiser</Text>
+        <TextInput style={styles.input} onChangeText={setOrganiser} />
+        <Button
+          onPress={submitActivity}
+          title="Submit"
+          color="#841584"
+          accessibilityLabel="Submit form for activity"
+        />
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
 
