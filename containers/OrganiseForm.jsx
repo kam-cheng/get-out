@@ -5,7 +5,9 @@ import {
   TextInput,
   Text,
   Button,
+  Alert,
 } from "react-native";
+import addActivity from "../api/addActivity";
 
 export default function OrganiseForm() {
   const [activity, setActivity] = React.useState();
@@ -15,6 +17,20 @@ export default function OrganiseForm() {
   const [image, setImage] = React.useState();
   const [location, setLocation] = React.useState();
   const [organiser, setOrganiser] = React.useState();
+
+  function submitActivity() {
+    addActivity({
+      activity,
+      category,
+      date,
+      description,
+      image,
+      location,
+      organiser,
+    }).then((msg) => {
+      console.log(msg);
+    });
+  }
 
   return (
     <SafeAreaView>
@@ -33,7 +49,7 @@ export default function OrganiseForm() {
       <Text>Organiser</Text>
       <TextInput style={styles.input} onChangeText={setOrganiser} />
       <Button
-        onPress={console.log("button pressed")}
+        onPress={submitActivity}
         title="Submit"
         color="#841584"
         accessibilityLabel="Submit form for activity"
