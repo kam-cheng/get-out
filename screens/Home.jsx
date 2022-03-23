@@ -5,29 +5,35 @@ import CategoryList from "../containers/CategoryList";
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>GoOut!</Text>
-      <View style={{ height: 50 }} />
-      <Text style={styles.heading2}>You Might Like...</Text>
-      <CategoryList />
+      <Text style={styles.logo}>GoOut!</Text>
+      <View>
+        <Text style={styles.heading}>You Might Like...</Text>
+        <CategoryList />
+      </View>
     </View>
   );
 }
 
+// cateogry list parent view
+// style={{ width: "100%" }}
+
 const styles = StyleSheet.create({
-  heading: {
+  logo: {
     color: "#212121",
     fontSize: 30,
-    fontWeight: "bold",
-    padding: 10,
+    fontFamily: "FugazOne-Regular",
+    marginVertical: 30,
+    marginBottom: 150,
+    alignSelf: "center",
   },
-  heading2: {
+  heading: {
     color: "#212121",
     fontSize: 23,
     fontWeight: "bold",
     marginBottom: 10,
   },
   container: {
-    flexDirection: "column",
-    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#fff",
   },
 });

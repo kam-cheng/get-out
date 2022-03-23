@@ -1,24 +1,68 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+  Button,
+} from "react-native";
 
-export default function CategoryCard({ name }) {
+export default function CategoryCard({ name, imgUrl, handlePress }) {
   return (
-    <View style={styles.row}>
-      <Text style={styles.heading3}>{name}</Text>
+    <View>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
+      <Text>{name}</Text>
     </View>
   );
 }
+/* <TouchableOpacity
+      onPress={() => {
+        handlePress(name);
+      }}
+    >
+      <View style={styles.container}>
+        <ImageBackground
+          source={{
+            uri: imgUrl,
+          }}
+          resizeMode={"cover"}
+          style={styles.image}
+        >
+          <View>
+            <Text style={styles.text}>{name}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity> */
 
 const styles = StyleSheet.create({
-  row: {
-    backgroundColor: "#808080",
-    padding: 30,
+  container: {
+    height: 150,
     marginBottom: 10,
-    flex: 1,
+    borderRadius: 10,
   },
-  heading3: {
+  text: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 25,
+    padding: 5,
+    opacity: 1,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 10,
+    borderRadius: 10,
   },
 });
