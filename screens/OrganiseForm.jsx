@@ -10,6 +10,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
+import { text, ui } from "../theme/index";
 
 export default function OrganiseForm({ navigation }) {
   const { user } = useContext(UserContext);
@@ -40,25 +41,23 @@ export default function OrganiseForm({ navigation }) {
 
   return (
     <KeyboardAwareScrollView>
-      <SafeAreaView>
-        <Text>Activity</Text>
+      <SafeAreaView style={ui.container}>
+        <Text style={text.body}>Activity</Text>
         <TextInput style={styles.input} onChangeText={setActivity} />
-        <Text>Category</Text>
+        <Text style={text.body}>Category</Text>
         <TextInput style={styles.input} onChangeText={setCategory} />
-        <Text>Date</Text>
+        <Text style={text.body}>Date</Text>
         <TextInput style={styles.input} onChangeText={setDate} />
-        <Text>Description</Text>
+        <Text style={text.body}>Description</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDescription}
           multiline
         />
-        <Text>Image</Text>
+        <Text style={text.body}>Image</Text>
         <TextInput style={styles.input} onChangeText={setImage} />
-        <Text>Location</Text>
+        <Text style={text.body}>Location</Text>
         <TextInput style={styles.input} onChangeText={setLocation} />
-        {/* <Text>Organiser</Text>
-        <TextInput style={styles.input} onChangeText={setOrganiser} /> */}
         <Button
           onPress={submitActivity}
           title="Submit"
@@ -73,7 +72,7 @@ export default function OrganiseForm({ navigation }) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    width: 200,
+    width: 300,
     margin: 12,
     borderWidth: 1,
     padding: 10,
