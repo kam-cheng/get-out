@@ -1,25 +1,30 @@
 import firestore from "@react-native-firebase/firestore";
 
 // reference to collection you are after
-const fetchUsersActivities = async (organiser) => {
-  const activitiesArray = [];
-  const activities = await firestore().collection("Activities");
-  const usersActivities = await activities
-    .where("Organiser", "==", organiser)
-    .get();
+const fetchUsersActivities = async (organiser, setOrganised) => {
+  const arrayofactivities = [];
 
-  if (usersActivities.empty) return null;
+  const query = firestore()
+    .collection("Activities")
+    .where("Organiser", "==", organiser);
 
-  // send matching activities back
-  usersActivities.forEach((item) => {
-    const newItem = item.data();
-    // get document id and assign it to object
-    newItem.id = item.id;
-    // .data() is a method for getting data
-    activitiesArray.push(newItem);
+  await query.onSnapshot((querySnapshot) => {
+    querySnapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+        const newItem = change.doc.data();
+        newItem.id = change.doc.id;
+        arrayofactivities.push(newItem);
+      }
+      if (change.type === "removed") {
+        const index = arrayofactivities.findIndex(
+          (item) => item.id === change.doc.id
+        );
+        arrayofactivities.splice(index, 1);
+      }
+    });
+    // update usestate because returning does not seem to work!!
+    setOrganised(arrayofactivities);
   });
-
-  return activitiesArray;
 };
 
 export default fetchUsersActivities;

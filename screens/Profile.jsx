@@ -8,12 +8,11 @@ export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
   const [organised, setOrganised] = useState(null);
 
-  // Display list of activities organised matching the user
-
   useEffect(() => {
-    fetchUsersActivities(user.name).then((activities) => {
-      setOrganised(activities);
-    });
+    const getUsersActivities = async () => {
+      await fetchUsersActivities(user.name, setOrganised);
+    };
+    getUsersActivities();
   }, []);
 
   let organisedActivities;
