@@ -27,9 +27,10 @@ export default function ProfileScreen({ navigation }) {
         <Text style={text.subtitle}>Organised Activities</Text>
         <FlatList
           data={organised}
+          keyExtractor={(item) => item.id}
           extraData={organised}
           renderItem={({ item }) => (
-            <Text id={item.id} style={text.body}>
+            <Text style={text.body}>
               {`Image: ${item.Image}
           Activity: ${item.Activity}
            Date: ${item.Date}`}
