@@ -23,7 +23,7 @@ DerivedData
 project.xcworkspace
 
 # Android/IntelliJ
-#
+
 build/
 .idea
 .gradle
@@ -53,5 +53,4 @@ buck-out/
 .expo/
 web-build/
 dist/
-
-key
+key/
