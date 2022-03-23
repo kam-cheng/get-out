@@ -14,9 +14,6 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-// cateogry list parent view
-// style={{ width: "100%" }}
-
 const styles = StyleSheet.create({
   logo: {
     color: "#212121",
@@ -34,6 +31,5 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 10,
-    // backgroundColor: "#fff",
   },
 });
