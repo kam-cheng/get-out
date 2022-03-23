@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import HomeScreen from "./screens/Home";
+
+import HomeStack from "./navigation/HomeStack";
+
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
 
@@ -20,6 +24,7 @@ function App() {
     verified: true,
   });
   return (
+
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
         <Tab.Navigator
@@ -31,8 +36,8 @@ function App() {
           }}
         >
           <Tab.Screen
-            name="Home"
-            component={HomeScreen}
+            name="HomeStack"
+            component={HomeStack}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons name="home" color={color} size={34} />
