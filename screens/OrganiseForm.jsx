@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -39,25 +39,67 @@ export default function OrganiseForm({ navigation }) {
     });
   }
 
+  // setting references so that text input jumps to next input box when return key is pressed
+  const refCategory = useRef();
+  const refDate = useRef();
+  const refDescription = useRef();
+  const refImage = useRef();
+  const refLocation = useRef();
+
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={ui.container}>
         <Text style={text.body}>Activity</Text>
-        <TextInput style={styles.input} onChangeText={setActivity} />
+        <TextInput
+          style={styles.input}
+          onChangeText={setActivity}
+          returnKeyType="next"
+          onSubmitEditing={() => refCategory.current.focus()}
+          blurOnSubmit={false}
+        />
         <Text style={text.body}>Category</Text>
-        <TextInput style={styles.input} onChangeText={setCategory} />
+        <TextInput
+          style={styles.input}
+          onChangeText={setCategory}
+          ref={refCategory}
+          returnKeyType="next"
+          onSubmitEditing={() => refDate.current.focus()}
+          blurOnSubmit={false}
+        />
         <Text style={text.body}>Date</Text>
-        <TextInput style={styles.input} onChangeText={setDate} />
+        <TextInput
+          style={styles.input}
+          onChangeText={setDate}
+          ref={refDate}
+          returnKeyType="next"
+          onSubmitEditing={() => refDescription.current.focus()}
+          blurOnSubmit={false}
+        />
         <Text style={text.body}>Description</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDescription}
           multiline
+          ref={refDescription}
+          returnKeyType="next"
+          onSubmitEditing={() => refImage.current.focus()}
+          blurOnSubmit={false}
         />
         <Text style={text.body}>Image</Text>
-        <TextInput style={styles.input} onChangeText={setImage} />
+        <TextInput
+          style={styles.input}
+          onChangeText={setImage}
+          ref={refImage}
+          returnKeyType="next"
+          onSubmitEditing={() => refLocation.current.focus()}
+          blurOnSubmit={false}
+        />
         <Text style={text.body}>Location</Text>
-        <TextInput style={styles.input} onChangeText={setLocation} />
+        <TextInput
+          style={styles.input}
+          onChangeText={setLocation}
+          ref={refLocation}
+        />
         <Button
           onPress={submitActivity}
           title="Submit"
