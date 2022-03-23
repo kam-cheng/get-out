@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./screens/Home";
+import HomeStack from "./navigation/HomeStack";
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
 
@@ -16,17 +16,17 @@ function App() {
     verified: true,
   });
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen
-            name="ProfileStack"
-            component={ProfileStack}
-            options={{ title: "Profile" }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+        <UserContext.Provider value={{ user, setUser }}>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="HomeStack" component={HomeStack} />
+        <Tab.Screen
+          name="ProfileStack"
+          component={ProfileStack}
+          options={{ title: "Profile" }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
     </UserContext.Provider>
   );
 }
