@@ -7,9 +7,8 @@ const fetchUsersActivities = async (organiser) => {
   const usersActivities = await activities
     .where("Organiser", "==", organiser)
     .get();
-  if (usersActivities.empty) {
-    return false;
-  }
+
+  if (usersActivities.empty) return null;
 
   // send matching activities back
   usersActivities.forEach((item) => {
@@ -19,6 +18,7 @@ const fetchUsersActivities = async (organiser) => {
     // .data() is a method for getting data
     activitiesArray.push(newItem);
   });
+
   return activitiesArray;
 };
 
