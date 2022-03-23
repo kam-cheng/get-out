@@ -26,30 +26,19 @@ export default function CategoryList() {
     },
   ];
 
-  const handlePress = (name) => {
-    // Navigate to corresponding screen
-    alert(`You tapped! ${name}`);
+  const handlePress = (name, id) => {
+    // Replace alert with navigation tools
+    alert(`Category: ${name}, ID: ${id}`);
   };
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22,
-    },
-    item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
-  });
-  //the whole page nees to be a scroll view (home)
   return (
     <View style={styles.container}>
       <FlatList
         data={categories}
-        // keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <CategoryCard
+            id={item.id}
             name={item.name}
             imgUrl={item.img_url}
             handlePress={handlePress}
@@ -59,3 +48,15 @@ export default function CategoryList() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 10
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+});

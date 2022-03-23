@@ -4,16 +4,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   ImageBackground,
-  Button,
 } from "react-native";
 
-export default function CategoryCard({ name, imgUrl, handlePress }) {
+export default function CategoryCard({ id, name, imgUrl, handlePress }) {
   return (
-<TouchableOpacity
+    <TouchableOpacity
       onPress={() => {
-        handlePress(name);
+        handlePress(name, id);
       }}
     >
       <View style={styles.container}>
@@ -33,12 +31,10 @@ export default function CategoryCard({ name, imgUrl, handlePress }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     height: 150,
     marginBottom: 10,
-    borderRadius: 10,
   },
   text: {
     color: "#fff",
@@ -51,6 +47,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 10,
-    borderRadius: 10,
   },
 });
