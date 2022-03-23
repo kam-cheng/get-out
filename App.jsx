@@ -2,16 +2,20 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/Home";
-import ProfileScreen from "./screens/Profile";
+import ProfileStack from "./navigation/ProfileStack";
 
 const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen
+          name="ProfileStack"
+          component={ProfileStack}
+          options={{ title: "Profile" }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
