@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, StyleSheet, Text } from "react-native";
+import { View, FlatList, StyleSheet, Text, ScrollView } from "react-native";
 import CategoryCard from "../components/cards/CategoryCard";
 
 export default function CategoryList() {
@@ -33,7 +33,7 @@ export default function CategoryList() {
 
   const styles = StyleSheet.create({
     container: {
-      // flex: 1,
+      flex: 1,
       paddingTop: 22,
     },
     item: {
@@ -42,7 +42,7 @@ export default function CategoryList() {
       height: 44,
     },
   });
-
+  //the whole page nees to be a scroll view (home)
   return (
     <View style={styles.container}>
       <FlatList
