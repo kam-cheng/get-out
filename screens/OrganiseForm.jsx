@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,15 +9,16 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
+import UserContext from "../context/User";
 
 export default function OrganiseForm({ navigation }) {
+  const { user } = useContext(UserContext);
   const [activity, setActivity] = React.useState();
   const [category, setCategory] = React.useState();
   const [date, setDate] = React.useState();
   const [description, setDescription] = React.useState();
   const [image, setImage] = React.useState();
   const [location, setLocation] = React.useState();
-  const [organiser, setOrganiser] = React.useState();
 
   const completionAlert = (message) =>
     Alert.alert("Create New Activity", message, [{ text: "OK" }]);
@@ -30,7 +31,7 @@ export default function OrganiseForm({ navigation }) {
       description,
       image,
       location,
-      organiser,
+      organiser: user.name,
     }).then((msg) => {
       completionAlert(msg);
       navigation.navigate("Profile");
@@ -56,8 +57,8 @@ export default function OrganiseForm({ navigation }) {
         <TextInput style={styles.input} onChangeText={setImage} />
         <Text>Location</Text>
         <TextInput style={styles.input} onChangeText={setLocation} />
-        <Text>Organiser</Text>
-        <TextInput style={styles.input} onChangeText={setOrganiser} />
+        {/* <Text>Organiser</Text>
+        <TextInput style={styles.input} onChangeText={setOrganiser} /> */}
         <Button
           onPress={submitActivity}
           title="Submit"
