@@ -51,7 +51,7 @@ export default function ProfileScreen({ navigation }) {
         }}
         accessibilityLabel="Profile Picture"
       />
-      <Text>Rating: {user.rating}</Text>
+      <Text style={text.body}>Rating: {user.rating}</Text>
       <Button
         title="Create New Activity"
         onPress={() => navigation.navigate("Create New Activity")}
