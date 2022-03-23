@@ -1,16 +1,16 @@
 import React from "react";
-import { StyleSheet, Button, Text, View } from "react-native";
+import { StyleSheet, Button, Text, View, ScrollView } from "react-native";
 import CategoryList from "../containers/CategoryList";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.logo}>GoOut!</Text>
       <View>
         <Text style={styles.heading}>You Might Like...</Text>
         <CategoryList />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "FugazOne-Regular",
     marginVertical: 30,
-    marginBottom: 150,
+    marginBottom: 130,
     alignSelf: "center",
   },
   heading: {

@@ -11,22 +11,7 @@ import {
 
 export default function CategoryCard({ name, imgUrl, handlePress }) {
   return (
-    <View>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-      <Text>{name}</Text>
-    </View>
-  );
-}
-/* <TouchableOpacity
+<TouchableOpacity
       onPress={() => {
         handlePress(name);
       }}
@@ -44,7 +29,10 @@ export default function CategoryCard({ name, imgUrl, handlePress }) {
           </View>
         </ImageBackground>
       </View>
-    </TouchableOpacity> */
+    </TouchableOpacity>
+  );
+}
+
 
 const styles = StyleSheet.create({
   container: {
