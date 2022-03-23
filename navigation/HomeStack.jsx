@@ -7,9 +7,16 @@ const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Category" component={Category} />
+      <Stack.Screen
+        name="Category"
+        component={Category}
+        options={({ route }) => ({ title: route.params.name })}
+      />
+      {
+        // ... Stack.Screen Activity Page
+      }
     </Stack.Navigator>
   );
 }

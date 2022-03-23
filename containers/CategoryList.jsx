@@ -2,7 +2,7 @@ import React from "react";
 import { View, FlatList, StyleSheet, Text, ScrollView } from "react-native";
 import CategoryCard from "../components/cards/CategoryCard";
 
-export default function CategoryList() {
+export default function CategoryList({ navigation }) {
   // dummy data, replace with call to api
   const categories = [
     {
@@ -28,7 +28,8 @@ export default function CategoryList() {
 
   const handlePress = (name, id) => {
     // Replace alert with navigation tools
-    alert(`Category: ${name}, ID: ${id}`);
+    // alert(`Category: ${name}, ID: ${id}`);
+    navigation.navigate("Category", { name });
   };
 
   return (
@@ -52,7 +53,7 @@ export default function CategoryList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   item: {
     padding: 10,

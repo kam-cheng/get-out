@@ -8,7 +8,7 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.logo}>GoOut!</Text>
       <View>
         <Text style={styles.heading}>You Might Like...</Text>
-        <CategoryList />
+        <CategoryList navigation={navigation} />
       </View>
     </ScrollView>
   );
