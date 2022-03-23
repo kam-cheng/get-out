@@ -1,20 +1,24 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, Button, Image, StyleSheet, FlatList } from "react-native";
 import UserContext from "../context/User";
-import fetchUsersActivities from "../api/fetchUsersActivities";
+import fetchDocuments from "../api/fetchDocuments";
 import { ui, text } from "../theme";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
   const [organised, setOrganised] = useState(null);
 
-  useEffect(() => {
-    const getUsersActivities = async () => {
-      await fetchUsersActivities(user.name, setOrganised);
-    };
-    getUsersActivities();
-  }, []);
+  const queryparams = {
+    setState: setOrganised,
+    query: "==",
+    collection: "Activities",
+    key: "Organiser",
+    value: user.name,
+  };
 
+  useEffect(() => {
+    fetchDocuments(queryparams);
+  }, []);
   let organisedActivities;
 
   if (organised !== null) {
@@ -23,6 +27,7 @@ export default function ProfileScreen({ navigation }) {
         <Text style={text.subtitle}>Organised Activities</Text>
         <FlatList
           data={organised}
+          extraData={organised}
           renderItem={({ item }) => (
             <Text id={item.id} style={text.body}>
               {`Image: ${item.Image}
