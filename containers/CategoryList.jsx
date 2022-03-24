@@ -34,6 +34,7 @@ export default function CategoryList({ navigation }) {
 
   return categories.map((item) => (
     <CategoryCard
+      key={item.id}
       id={item.id}
       name={item.name}
       imgUrl={item.img_url}
