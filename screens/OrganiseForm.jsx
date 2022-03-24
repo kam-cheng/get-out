@@ -86,12 +86,12 @@ export default function OrganiseForm({ navigation }) {
           onChangeText={setCategory}
           ref={refCategory}
           returnKeyType="next"
-          onSubmitEditing={() => refDescription.current.focus()}
+          onSubmitEditing={() => refImage.current.focus()}
           blurOnSubmit={false}
         />
-        <Button onPress={showDatepicker} title="Input Date" />
-        <Button onPress={showTimepicker} title="Input Time" />
-        <Text style={text.body}>selected: {date.toLocaleString()}</Text>
+        <Button onPress={showDatepicker} title="Select Date!" />
+        <Button onPress={showTimepicker} title="Select Time!" />
+        <Text style={text.body}>Selected: {date.toLocaleString()}</Text>
         <Text style={text.body}>Description</Text>
         <TextInput
           style={styles.input}
