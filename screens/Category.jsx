@@ -6,7 +6,6 @@ export default function CategoryScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Name: {JSON.stringify(name)}</Text>
-      <Button title="Home" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
