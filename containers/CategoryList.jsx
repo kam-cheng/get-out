@@ -1,5 +1,4 @@
 import React from "react";
-import { FlatList } from "react-native";
 import CategoryCard from "../components/cards/CategoryCard";
 
 export default function CategoryList({ navigation }) {
@@ -26,7 +25,7 @@ export default function CategoryList({ navigation }) {
     },
   ];
 
-  const handlePress = (name, id) => {
+  const handlePress = (name) => {
     // Replace alert with navigation tools
     // alert(`Category: ${name}, ID: ${id}`);
     navigation.navigate("Category", { name });

@@ -21,7 +21,10 @@ export const ui = {
   activityListContainer: {
     height: 125,
     overflow: "hidden",
-    borderRadius: 10
+    borderRadius: 10,
+    flexDirection: "row",
+    backgroundColor: "#F2F4F4",
+    marginBottom: 12,
   },
   categoryListText: {
     color: "#fff",
@@ -38,9 +41,9 @@ export const ui = {
     fontFamily: "Fredoka-Regular",
     fontSize: 26,
     fontWeight: "bold",
-    position: "absolute",
+
     bottom: 10,
-    left: 5
+    left: 5,
   },
   categoryListImage: {
     flex: 1,
