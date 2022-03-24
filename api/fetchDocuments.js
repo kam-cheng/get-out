@@ -20,7 +20,7 @@ const fetchDocuments = async ({ collection, key, query, setState, value }) => {
         }
       });
       // update usestate because returning does not seem to work!!
-      setState(arrayofactivities);
+      setState(() => arrayofactivities);
     });
 };
 

@@ -8,9 +8,9 @@ export default function OrganisedActivitiesList() {
   const {
     user: { name },
   } = useContext(UserContext);
-  const organised = useOrganisedActivities(name);
 
-  if (organised.length > 0) {
+  const organised = useOrganisedActivities(name);
+  if (organised !== null && organised.length > 0) {
     return (
       <>
         <Text style={text.subtitle}>Organised Activities</Text>

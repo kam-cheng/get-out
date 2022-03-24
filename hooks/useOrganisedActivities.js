@@ -13,7 +13,10 @@ const useOrganisedActivities = (organiser) => {
   };
 
   useEffect(() => {
-    fetchDocuments(queryparams);
+    async function getDocuments() {
+      await fetchDocuments(queryparams);
+    }
+    getDocuments();
   }, [organiser]);
 
   return activities;
