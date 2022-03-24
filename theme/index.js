@@ -18,6 +18,11 @@ export const ui = {
     overflow: "hidden",
     borderRadius: 20,
   },
+  activityListContainer: {
+    height: 125,
+    overflow: "hidden",
+    borderRadius: 10
+  },
   categoryListText: {
     color: "#fff",
     fontFamily: "Fredoka-Regular",
@@ -27,6 +32,15 @@ export const ui = {
     position: "absolute",
     bottom: 30,
     left: 30,
+  },
+  activityListTitle: {
+    color: "#fff",
+    fontFamily: "Fredoka-Regular",
+    fontSize: 26,
+    fontWeight: "bold",
+    position: "absolute",
+    bottom: 10,
+    left: 5
   },
   categoryListImage: {
     flex: 1,
