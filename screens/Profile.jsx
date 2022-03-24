@@ -1,64 +1,38 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, Button, Image, StyleSheet, FlatList } from "react-native";
+import React, { useContext } from "react";
+import { ScrollView, Text, Button, Image, StyleSheet } from "react-native";
 import UserContext from "../context/User";
-import fetchUsersActivities from "../api/fetchUsersActivities";
+import { ui, text } from "../theme";
+import OrganisedActivitiesList from "../containers/OrganisedActivitiesList";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
-  const [organised, setOrganised] = useState(null);
-
-  // Display list of activities organised matching the user
-
-  useEffect(() => {
-    fetchUsersActivities(user.name).then((activities) => {
-      setOrganised(activities);
-    });
-  }, []);
-
-  let organisedActivities;
-
-  if (organised !== null) {
-    organisedActivities = (
-      <>
-        <Text>Organised Activities</Text>
-        <FlatList
-          data={organised}
-          renderItem={({ item }) => (
-            <Text id={item.id}>
-              {`Image: ${item.Image}
-          Activity: ${item.Activity}
-           Date: ${item.Date}`}
-            </Text>
-          )}
-        />
-      </>
-    );
-  }
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Welcome Back!</Text>
+    <ScrollView style={ui.container}>
+      <Text style={text.title}>Welcome Back {user.name}!</Text>
       <Image
-        style={styles.logo}
+        style={styles.avatar}
         source={{
           uri: user.avatar,
         }}
+        accessibilityLabel="Profile Picture"
       />
-      <Text>{user.name}</Text>
-      <Text>Rating: {user.rating}</Text>
+      <Text style={text.body}>Rating: {user.rating}</Text>
       <Button
         title="Create New Activity"
         onPress={() => navigation.navigate("Create New Activity")}
       />
-      {organisedActivities}
-    </View>
+      <OrganisedActivitiesList />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    width: 100,
-    height: 100,
+  avatar: {
+    width: 200,
+    height: 200,
+    borderRadius: 25,
+    resizeMode: "contain",
   },
   header: {
     fontSize: 32,

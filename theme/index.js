@@ -13,14 +13,45 @@ export const ui = {
     height: "100%",
     padding: 15,
   },
+  categoryListContainer: {
+    height: 250,
+    overflow: "hidden",
+    borderRadius: 20,
+  },
+  categoryListText: {
+    color: "#fff",
+    fontFamily: "Fredoka-Regular",
+    fontSize: 32,
+    fontWeight: "700",
+    fontStyle: "italic",
+    position: "absolute",
+    bottom: 30,
+    left: 30,
+  },
+  categoryListImage: {
+    flex: 1,
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  categoryListBackground: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 200,
+  },
+  touchableContainer: {
+    borderRadius: 20,
+    marginBottom: 20,
+  },
 };
 
 export const text = {
   title: {
     fontFamily: appFont,
-    fontSize: 45,
+    fontSize: 50,
     fontStyle: "italic",
-    fontWeight: "bold",
+    fontWeight: "700",
     textAlign: "center",
     marginBottom: 40,
     paddingVertical: 15,
@@ -35,10 +66,10 @@ export const text = {
     fontFamily: appFont,
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 10,
     color: colors.primary,
   },
 };
 
 // Default App FontFamily
-const appFont = "Inter-Regular";
+export const appFont = "Fredoka-Regular";

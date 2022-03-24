@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,6 +10,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
+import { text, ui } from "../theme/index";
 
 export default function OrganiseForm({ navigation }) {
   const { user } = useContext(UserContext);
@@ -38,27 +39,67 @@ export default function OrganiseForm({ navigation }) {
     });
   }
 
+  // setting references so that text input jumps to next input box when return key is pressed
+  const refCategory = useRef();
+  const refDate = useRef();
+  const refDescription = useRef();
+  const refImage = useRef();
+  const refLocation = useRef();
+
   return (
     <KeyboardAwareScrollView>
-      <SafeAreaView>
-        <Text>Activity</Text>
-        <TextInput style={styles.input} onChangeText={setActivity} />
-        <Text>Category</Text>
-        <TextInput style={styles.input} onChangeText={setCategory} />
-        <Text>Date</Text>
-        <TextInput style={styles.input} onChangeText={setDate} />
-        <Text>Description</Text>
+      <SafeAreaView style={ui.container}>
+        <Text style={text.body}>Activity</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setActivity}
+          returnKeyType="next"
+          onSubmitEditing={() => refCategory.current.focus()}
+          blurOnSubmit={false}
+        />
+        <Text style={text.body}>Category</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setCategory}
+          ref={refCategory}
+          returnKeyType="next"
+          onSubmitEditing={() => refDate.current.focus()}
+          blurOnSubmit={false}
+        />
+        <Text style={text.body}>Date</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setDate}
+          ref={refDate}
+          returnKeyType="next"
+          onSubmitEditing={() => refDescription.current.focus()}
+          blurOnSubmit={false}
+        />
+        <Text style={text.body}>Description</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDescription}
           multiline
+          ref={refDescription}
+          returnKeyType="next"
+          onSubmitEditing={() => refImage.current.focus()}
+          blurOnSubmit={false}
         />
-        <Text>Image</Text>
-        <TextInput style={styles.input} onChangeText={setImage} />
-        <Text>Location</Text>
-        <TextInput style={styles.input} onChangeText={setLocation} />
-        {/* <Text>Organiser</Text>
-        <TextInput style={styles.input} onChangeText={setOrganiser} /> */}
+        <Text style={text.body}>Image</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setImage}
+          ref={refImage}
+          returnKeyType="next"
+          onSubmitEditing={() => refLocation.current.focus()}
+          blurOnSubmit={false}
+        />
+        <Text style={text.body}>Location</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setLocation}
+          ref={refLocation}
+        />
         <Button
           onPress={submitActivity}
           title="Submit"
@@ -73,7 +114,7 @@ export default function OrganiseForm({ navigation }) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    width: 200,
+    width: 300,
     margin: 12,
     borderWidth: 1,
     padding: 10,
