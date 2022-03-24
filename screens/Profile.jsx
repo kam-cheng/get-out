@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ScrollView, Text, Button, Image, StyleSheet } from "react-native";
 import UserContext from "../context/User";
 import { ui, text } from "../theme";
-import OrganisedActivitiesList from "../containers/OrganisedActivitiesList";
+import ActivitiesList from "../containers/ActivitiesList";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
@@ -22,7 +22,24 @@ export default function ProfileScreen({ navigation }) {
         title="Create New Activity"
         onPress={() => navigation.navigate("Create New Activity")}
       />
-      <OrganisedActivitiesList />
+      <ActivitiesList
+        title="Organised Activities"
+        props={{
+          query: "==",
+          collection: "Activities",
+          key: "Organiser",
+          value: user.name,
+        }}
+      />
+      <ActivitiesList
+        title="Upcoming Activities"
+        props={{
+          query: "array-contains",
+          collection: "Activities",
+          key: "Attendees",
+          value: user.name,
+        }}
+      />
     </ScrollView>
   );
 }
