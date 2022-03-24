@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { ui } from "../../theme";
 
 export default function CategoryCard({ id, name, imgUrl, handlePress }) {
   return (
@@ -14,57 +9,23 @@ export default function CategoryCard({ id, name, imgUrl, handlePress }) {
       onPress={() => {
         handlePress(name, id);
       }}
-      style={styles.touchableContainer}
+      style={ui.touchableContainer}
     >
-      <View style={styles.container}>
+      <View style={ui.categoryListContainer}>
         <ImageBackground
           source={{
             uri: imgUrl,
           }}
           resizeMode={"cover"}
-          style={styles.image}
+          style={ui.categoryListImage}
         >
           <LinearGradient
             colors={["transparent", "rgba(0,0,0,0.5)"]}
-            style={styles.background}
+            style={ui.categoryListBackground}
           />
-          <Text style={styles.text}>{name}</Text>
+          <Text style={ui.categoryListText}>{name}</Text>
         </ImageBackground>
       </View>
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 250,
-    overflow: "hidden",
-    borderRadius: 20,
-  },
-  text: {
-    color: "#fff",
-    fontFamily: "Fredoka-Regular",
-    fontSize: 32,
-    fontWeight: "700",
-    fontStyle: "italic",
-    position: "absolute",
-    bottom: 30,
-    left: 30,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 200,
-  },
-  touchableContainer: {
-    borderRadius: 20,
-    marginBottom: 20,
-  },
-});
