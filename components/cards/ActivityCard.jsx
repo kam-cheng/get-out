@@ -2,17 +2,11 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { ui } from "../../theme";
 
-export default function ActivityCard({
-  id,
-  title,
-  img_url,
-  rating,
-  handlePress,
-}) {
+export default function ActivityCard({ title, img_url, handlePress }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        handlePress(title, id);
+        handlePress(title);
       }}
     >
       <View style={ui.activityListContainer}>
@@ -29,5 +23,3 @@ export default function ActivityCard({
     </TouchableOpacity>
   );
 }
-
-//stylesheet to be sorted

@@ -30,8 +30,8 @@ export default function ActivityList({ navigation }) {
     },
   ];
 
-  const handlePress = (title, id) => {
-    navigation.navigate("Activity", { title, id });
+  const handlePress = (title) => {
+    navigation.navigate("Activity", { title });
   };
 
   return outdoors.map((item) => (
