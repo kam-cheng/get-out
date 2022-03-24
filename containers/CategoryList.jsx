@@ -32,22 +32,15 @@ export default function CategoryList({ navigation }) {
     navigation.navigate("Category", { name });
   };
 
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={categories}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <CategoryCard
-            id={item.id}
-            name={item.name}
-            imgUrl={item.img_url}
-            handlePress={handlePress}
-          />
-        )}
-      />
-    </View>
-  );
+  return categories.map((item) => (
+    <CategoryCard
+      key={item.id}
+      id={item.id}
+      name={item.name}
+      imgUrl={item.img_url}
+      handlePress={handlePress}
+    />
+  ));
 }
 
 const styles = StyleSheet.create({
