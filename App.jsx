@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import HomeScreen from "./screens/Home";
-
+import HomeScreen from "./screens/Home"; // unused?
 import HomeStack from "./navigation/HomeStack";
-
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
 
 // importing global theme
-import { colors, text, ui } from "./theme";
+import { colors } from "./theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,6 +26,7 @@ function App() {
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
+            headerStyle: { backgroundColor: "salmon" },
             tabBarActiveTintColor: colors.active,
             tabBarInactiveTintColor: colors.inactive,
             tabBarShowLabel: false,
@@ -38,7 +36,7 @@ function App() {
             name="HomeStack"
             component={HomeStack}
             options={{
-              tabBarIcon: ({ color, size }) => (
+              tabBarIcon: ({ color }) => (
                 <MaterialIcons name="home" color={color} size={34} />
               ),
             }}
@@ -47,7 +45,7 @@ function App() {
             name="ProfileStack"
             component={ProfileStack}
             options={{
-              tabBarIcon: ({ color, size }) => (
+              tabBarIcon: ({ color }) => (
                 <MaterialIcons name="person" color={color} size={34} />
               ),
             }}

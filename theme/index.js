@@ -18,9 +18,9 @@ export const ui = {
 export const text = {
   title: {
     fontFamily: appFont,
-    fontSize: 45,
+    fontSize: 50,
     fontStyle: "italic",
-    fontWeight: "bold",
+    fontWeight: "700",
     textAlign: "center",
     marginBottom: 40,
     paddingVertical: 15,
@@ -35,10 +35,10 @@ export const text = {
     fontFamily: appFont,
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 10,
     color: colors.primary,
   },
 };
 
 // Default App FontFamily
-const appFont = "Inter-Regular";
+export const appFont = "Fredoka-Regular";
