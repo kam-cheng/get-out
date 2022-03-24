@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CategoryCard({ id, name, imgUrl, handlePress }) {
   return (
@@ -22,9 +23,11 @@ export default function CategoryCard({ id, name, imgUrl, handlePress }) {
           resizeMode={"cover"}
           style={styles.image}
         >
-          <View>
-            <Text style={styles.text}>{name}</Text>
-          </View>
+          <LinearGradient
+            colors={["transparent", "rgba(0,0,0,0.5)"]}
+            style={styles.background}
+          />
+          <Text style={styles.text}>{name}</Text>
         </ImageBackground>
       </View>
     </TouchableOpacity>
@@ -33,19 +36,30 @@ export default function CategoryCard({ id, name, imgUrl, handlePress }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 150,
-    marginBottom: 10,
+    height: 250,
+    marginBottom: 15,
+    overflow: "hidden",
+    borderRadius: 20,
   },
   text: {
     color: "#fff",
-    fontWeight: "bold",
-    fontSize: 25,
-    padding: 5,
-    opacity: 1,
+    fontFamily: "Fredoka-Regular",
+    fontSize: 32,
+    fontWeight: "700",
+    fontStyle: "italic",
+    position: "absolute",
+    bottom: 30,
+    left: 30,
   },
   image: {
     flex: 1,
     justifyContent: "center",
-    padding: 10,
+  },
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 200,
   },
 });
