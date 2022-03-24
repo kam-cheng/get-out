@@ -1,15 +1,29 @@
 import firestore from "@react-native-firebase/firestore";
 
-const fetchDocuments = async ({ collection, key, query, setState, value }) => {
+const fetchDocuments = async ({
+  collection,
+  key,
+  query,
+  setState,
+  value,
+  time = ">=",
+  order = "asc",
+}) => {
+  const currentTime = firestore.Timestamp.now();
   const arrayofactivities = [];
-  await firestore()
+  const ref = await firestore()
     .collection(collection)
     .where(key, query, value)
-    .onSnapshot((querySnapshot) => {
+    .where("Date", time, currentTime)
+    .orderBy("Date", order);
+  ref.onSnapshot(
+    (querySnapshot) => {
       querySnapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           const newItem = change.doc.data();
           newItem.id = change.doc.id;
+          // convert timestamp to date
+          newItem.Date = newItem.Date.toDate().toString();
           arrayofactivities.push(newItem);
         }
         if (change.type === "removed") {
@@ -21,7 +35,11 @@ const fetchDocuments = async ({ collection, key, query, setState, value }) => {
       });
       // update usestate because returning does not seem to work!!
       setState(() => arrayofactivities);
-    });
+    },
+    (err) => {
+      console.log(`Encountered error: ${err}`);
+    }
+  );
 };
 
 export default fetchDocuments;

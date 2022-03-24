@@ -22,7 +22,7 @@ export default function ActivitiesList({ title, props }) {
           >
             <Text style={text.body}>{activity.Activity}</Text>
             <Text style={text.body}>{activity.Image}</Text>
-            {/* <Text style={text.body}>{activity.Date}</Text> */}
+            <Text style={text.body}>{activity.Date}</Text>
           </View>
         ))}
       </>
