@@ -13,6 +13,37 @@ export const ui = {
     height: "100%",
     padding: 15,
   },
+  categoryListContainer: {
+    height: 250,
+    overflow: "hidden",
+    borderRadius: 20,
+  },
+  categoryListText: {
+    color: "#fff",
+    fontFamily: "Fredoka-Regular",
+    fontSize: 32,
+    fontWeight: "700",
+    fontStyle: "italic",
+    position: "absolute",
+    bottom: 30,
+    left: 30,
+  },
+  categoryListImage: {
+    flex: 1,
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  categoryListBackground: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 200,
+  },
+  touchableContainer: {
+    borderRadius: 20,
+    marginBottom: 20,
+  },
 };
 
 export const text = {
