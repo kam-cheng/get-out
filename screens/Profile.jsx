@@ -23,7 +23,7 @@ export default function ProfileScreen({ navigation }) {
         onPress={() => navigation.navigate("Create New Activity")}
       />
       <ActivitiesList
-        title="Organised Activities"
+        heading="Organised Activities"
         props={{
           query: "==",
           collection: "Activities",
@@ -32,7 +32,7 @@ export default function ProfileScreen({ navigation }) {
         }}
       />
       <ActivitiesList
-        title="Upcoming Activities"
+        heading="Upcoming Activities"
         props={{
           query: "array-contains",
           collection: "Activities",
@@ -41,7 +41,7 @@ export default function ProfileScreen({ navigation }) {
         }}
       />
       <ActivitiesList
-        title="Past Activities"
+        heading="Past Activities"
         props={{
           query: "array-contains",
           collection: "Activities",
