@@ -3,6 +3,7 @@ import { ScrollView, Text, Button, Image, StyleSheet } from "react-native";
 import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import OrganisedActivitiesList from "../containers/OrganisedActivitiesList";
+import UpcomingActivitiesList from "../containers/UpcomingActivitiesList";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
@@ -23,6 +24,7 @@ export default function ProfileScreen({ navigation }) {
         onPress={() => navigation.navigate("Create New Activity")}
       />
       <OrganisedActivitiesList />
+      <UpcomingActivitiesList />
     </ScrollView>
   );
 }
