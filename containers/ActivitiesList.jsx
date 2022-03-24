@@ -1,16 +1,13 @@
-import React, { useContext } from "react";
+/* eslint-disable react/prop-types */
+import React from "react";
 import { Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import useActivitiesList from "../hooks/useActivitiesList";
-import UserContext from "../context/User";
 import { text } from "../theme";
 import ActivityCard from "../components/cards/ActivityCard";
 
 export default function ActivitiesList({ heading, props }) {
   const navigation = useNavigation();
-  const {
-    user: { name },
-  } = useContext(UserContext);
 
   const handlePress = (title) => {
     navigation.navigate("Activity", { title });
@@ -33,6 +30,6 @@ export default function ActivitiesList({ heading, props }) {
       </>
     );
   }
-  // // eslint-disable-next-line react/jsx-no-useless-fragment
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }
