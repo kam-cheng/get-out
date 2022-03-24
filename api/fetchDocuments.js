@@ -1,25 +1,29 @@
 import firestore from "@react-native-firebase/firestore";
 
-const fetchDocuments = async ({ collection, key, query, setState, value }) => {
-  const time = firestore.Timestamp.now();
-  console.log("Current Time ", time.toDate().toString());
+const fetchDocuments = async ({
+  collection,
+  key,
+  query,
+  setState,
+  value,
+  time = ">=",
+  order = "asc",
+}) => {
+  const currentTime = firestore.Timestamp.now();
   const arrayofactivities = [];
   const ref = await firestore()
     .collection(collection)
     .where(key, query, value)
-    .where("Date", ">=", time);
-  console.log(ref.length);
-
+    .where("Date", time, currentTime)
+    .orderBy("Date", order);
   ref.onSnapshot(
     (querySnapshot) => {
       querySnapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           const newItem = change.doc.data();
           newItem.id = change.doc.id;
-          // console.log(firestore.Timestamp.now().toDate());
           // convert timestamp to date
           newItem.Date = newItem.Date.toDate().toString();
-          console.log(newItem.Date);
           arrayofactivities.push(newItem);
         }
         if (change.type === "removed") {

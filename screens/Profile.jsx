@@ -40,6 +40,17 @@ export default function ProfileScreen({ navigation }) {
           value: user.name,
         }}
       />
+      <ActivitiesList
+        title="Past Activities"
+        props={{
+          query: "array-contains",
+          collection: "Activities",
+          key: "Attendees",
+          value: user.name,
+          time: "<",
+          order: "desc",
+        }}
+      />
     </ScrollView>
   );
 }
