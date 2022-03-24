@@ -14,6 +14,7 @@ export default function CategoryCard({ id, name, imgUrl, handlePress }) {
       onPress={() => {
         handlePress(name, id);
       }}
+      style={styles.touchableContainer}
     >
       <View style={styles.container}>
         <ImageBackground
@@ -37,7 +38,6 @@ export default function CategoryCard({ id, name, imgUrl, handlePress }) {
 const styles = StyleSheet.create({
   container: {
     height: 250,
-    marginBottom: 15,
     overflow: "hidden",
     borderRadius: 20,
   },
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center",
+    overflow: "hidden",
   },
   background: {
     position: "absolute",
@@ -61,5 +62,9 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 200,
+  },
+  touchableContainer: {
+    borderRadius: 20,
+    marginBottom: 20,
   },
 });
