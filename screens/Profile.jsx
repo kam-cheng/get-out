@@ -1,53 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, Button, Image, StyleSheet, FlatList } from "react-native";
+import React, { useContext } from "react";
+import { ScrollView, Text, Button, Image, StyleSheet } from "react-native";
 import UserContext from "../context/User";
-import fetchDocuments from "../api/fetchDocuments";
 import { ui, text } from "../theme";
+import OrganisedActivitiesList from "../containers/OrganisedActivitiesList";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
-  const [organised, setOrganised] = useState(null);
-
-  const queryparams = {
-    setState: setOrganised,
-    query: "==",
-    collection: "Activities",
-    key: "Organiser",
-    value: user.name,
-  };
-
-  useEffect(() => {
-    fetchDocuments(queryparams);
-  }, []);
-  let organisedActivities;
-
-  if (organised !== null) {
-    organisedActivities = (
-      <>
-        <Text style={text.subtitle}>Organised Activities</Text>
-        <FlatList
-          data={organised}
-          keyExtractor={(item) => item.id}
-          extraData={organised}
-          renderItem={({ item }) => (
-            <Text style={text.body}>
-              {`Image: ${item.Image}
-          Activity: ${item.Activity}
-           Date: ${item.Date}`}
-            </Text>
-          )}
-        />
-      </>
-    );
-  }
 
   return (
-    <View
-      style={
-        (ui.container,
-        { flex: 1, alignItems: "center", justifyContent: "center" })
-      }
-    >
+    <ScrollView style={ui.container}>
       <Text style={text.title}>Welcome Back {user.name}!</Text>
       <Image
         style={styles.avatar}
@@ -61,8 +22,8 @@ export default function ProfileScreen({ navigation }) {
         title="Create New Activity"
         onPress={() => navigation.navigate("Create New Activity")}
       />
-      {organisedActivities}
-    </View>
+      <OrganisedActivitiesList />
+    </ScrollView>
   );
 }
 
