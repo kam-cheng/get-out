@@ -13,7 +13,7 @@ export default function HomeStack() {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: true,
+          headerShown: false,
           headerTitleAlign: "center",
           headerTitleStyle: { fontFamily: appFont },
         }}
