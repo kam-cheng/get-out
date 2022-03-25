@@ -1,33 +1,36 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Text, View } from "react-native";
-// import useActivitiesList from "../hooks/useActivitiesList";
+import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { text } from "../theme";
 import fetchDocuments from "../api/fetchDocuments";
+import ActivityCard from "../components/cards/ActivityCard";
 
-export default function ActivitiesList({ title, props }) {
+export default function ActivitiesList({ heading, props }) {
   const [activities, setActivities] = useState([]);
+  const navigation = useNavigation();
 
-  // eslint-disable-next-line react/prop-types
   props.setState = setActivities;
 
   fetchDocuments(props);
 
-  if (activities.length === 0) {
+  const handlePress = (item) => {
+    navigation.navigate("Activity", { item });
+  };
+
+  if (activities.length === 0)
     return <Text style={text.subtitle}>Loading Activities...</Text>; // or a spinner
-  }
   return (
     <>
-      <Text style={text.subtitle}>{title}</Text>
-      {activities.map((activity) => (
-        <View
-          key={activity.id}
-          style={{ backgroundColor: "pink", margin: 10, padding: 10 }}
-        >
-          <Text style={text.body}>{activity.Activity}</Text>
-          <Text style={text.body}>{activity.Image}</Text>
-          <Text style={text.body}>{activity.Date}</Text>
-        </View>
+      <Text style={text.subtitle}>{heading}</Text>
+      {activities.map((item) => (
+        <ActivityCard
+          key={item.id}
+          id={item.id}
+          title={item.Activity}
+          img_url={item.Image}
+          handlePress={() => handlePress(item)}
+        />
       ))}
     </>
   );
