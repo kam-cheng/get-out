@@ -7,7 +7,6 @@ export default function ActivityItem({
     params: { item },
   },
 }) {
-  console.log(item.Image);
   return (
     <>
       <Text>{item.Activity}</Text>
@@ -18,7 +17,6 @@ export default function ActivityItem({
         source={{ uri: `${item.Image}` }}
       />
       <Text>{item.Description}</Text>
-      <Text>Number of Attendees: {item.Attendees.length}</Text>
     </>
   );
 }
