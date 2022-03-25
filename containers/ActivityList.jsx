@@ -11,7 +11,7 @@ export default function ActivityList({ navigation, props }) {
 
   useEffect(() => {
     fetchDocuments("activities");
-  });
+  }, []);
 
   const handlePress = (title) => {
     navigation.navigate("Activity", { title });
