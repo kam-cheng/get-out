@@ -4,7 +4,6 @@ import firestore from "@react-native-firebase/firestore";
 const fetchCollection = async (name) => {
   const collectionArray = [];
   const collection = await firestore().collection(name).get();
-  console.log(name, "inside api");
   collection.forEach((item) => {
     const newItem = item.data();
     // get document id and assign it to object
