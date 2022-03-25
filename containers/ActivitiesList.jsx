@@ -1,33 +1,37 @@
-import React, { useContext } from "react";
-import { Text, View } from "react-native";
-import useActivitiesList from "../hooks/useActivitiesList";
-import UserContext from "../context/User";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { text } from "../theme";
+import fetchDocuments from "../api/fetchDocuments";
+import ActivityCard from "../components/cards/ActivityCard";
 
-export default function ActivitiesList({ title, props }) {
-  const {
-    user: { name },
-  } = useContext(UserContext);
+export default function ActivitiesList({ heading, props }) {
+  const [activities, setActivities] = useState([]);
+  const navigation = useNavigation();
 
-  // const organised = useOrganisedActivities(name);
-  const organised = useActivitiesList(props);
-  if (organised !== null && organised.length > 0) {
-    return (
-      <>
-        <Text style={text.subtitle}>{title}</Text>
-        {organised.map((activity) => (
-          <View
-            key={activity.id}
-            style={{ backgroundColor: "pink", margin: 10, padding: 10 }}
-          >
-            <Text style={text.body}>{activity.Activity}</Text>
-            <Text style={text.body}>{activity.Image}</Text>
-            <Text style={text.body}>{activity.Date}</Text>
-          </View>
-        ))}
-      </>
-    );
-  }
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <></>;
+  props.setState = setActivities;
+
+  fetchDocuments(props);
+
+  const handlePress = (item) => {
+    navigation.navigate("Activity", { item });
+  };
+
+  if (activities.length === 0)
+    return <Text style={text.subtitle}>Loading Activities...</Text>; // or a spinner
+  return (
+    <>
+      <Text style={text.subtitle}>{heading}</Text>
+      {activities.map((item) => (
+        <ActivityCard
+          key={item.id}
+          id={item.id}
+          title={item.Activity}
+          img_url={item.Image}
+          handlePress={() => handlePress(item)}
+        />
+      ))}
+    </>
+  );
 }
