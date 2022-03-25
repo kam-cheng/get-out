@@ -7,8 +7,11 @@ import ActivityCard from "../components/cards/ActivityCard";
 export default function ActivityList({ navigation, props }) {
   const [activityList, setActivityList] = useState([]);
 
+  // things we needs for fetching activites by category:
   const { key, query, value } = props;
 
+
+  // fetchDocuments("activities", key, query, setActivityList, value)
   useEffect(() => {
     fetchDocuments("activities");
   }, []);
