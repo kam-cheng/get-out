@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { ScrollView, Text, Button, Image, StyleSheet } from "react-native";
 import UserContext from "../context/User";
@@ -23,7 +24,7 @@ export default function ProfileScreen({ navigation }) {
         onPress={() => navigation.navigate("Create New Activity")}
       />
       <ActivitiesList
-        title="Organised Activities"
+        heading="Organised Activities"
         props={{
           query: "==",
           collection: "Activities",
@@ -32,7 +33,7 @@ export default function ProfileScreen({ navigation }) {
         }}
       />
       <ActivitiesList
-        title="Upcoming Activities"
+        heading="Upcoming Activities"
         props={{
           query: "array-contains",
           collection: "Activities",
@@ -41,7 +42,7 @@ export default function ProfileScreen({ navigation }) {
         }}
       />
       <ActivitiesList
-        title="Past Activities"
+        heading="Past Activities"
         props={{
           query: "array-contains",
           collection: "Activities",
