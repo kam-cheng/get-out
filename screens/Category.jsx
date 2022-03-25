@@ -9,7 +9,7 @@ export default function CategoryScreen({ route, navigation }) {
     <View style={ui.container}>
       <View>
         <Text style={text.body}>Browsing Activities</Text>
-        <Text style={text.subtitle}>{JSON.stringify(name)}</Text>
+        <Text style={text.sectionTitle}>{JSON.stringify(name)}</Text>
       </View>
       <ActivityList navigation={navigation} />
     </View>
