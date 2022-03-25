@@ -9,8 +9,8 @@ import ActivityCard from "../components/cards/ActivityCard";
 export default function ActivitiesList({ heading, props }) {
   const navigation = useNavigation();
 
-  const handlePress = (title) => {
-    navigation.navigate("Activity", { title });
+  const handlePress = (item) => {
+    navigation.navigate("Activity", { item });
   };
   // const organised = useOrganisedActivities(name);
   const organised = useActivitiesList(props);
@@ -24,7 +24,7 @@ export default function ActivitiesList({ heading, props }) {
             id={item.id}
             title={item.Activity}
             img_url={item.Image}
-            handlePress={handlePress}
+            handlePress={() => handlePress(item)}
           />
         ))}
       </>
