@@ -1,7 +1,8 @@
 import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/Home";
-import Category from "../screens/Category";
+import CategoryScreen from "../screens/Category";
+import ActivityScreen from "../screens/Activity";
 import { appFont } from "../theme";
 
 const Stack = createNativeStackNavigator();
@@ -20,14 +21,18 @@ export default function HomeStack() {
       />
       <Stack.Screen
         name="Category"
-        component={Category}
+        component={CategoryScreen}
         options={({ route }) => ({
           title: route.params.name,
         })}
       />
-      {
-        // ... Stack.Screen Activity Page
-      }
+      <Stack.Screen
+        name="Activity"
+        component={ActivityScreen}
+        options={({ route }) => ({
+          title: route.params.title
+        })}
+      />
     </Stack.Navigator>
   );
 }

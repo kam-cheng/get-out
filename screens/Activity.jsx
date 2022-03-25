@@ -1,30 +1,13 @@
 import * as React from "react";
-import { View, Text, Button, Alert } from "react-native";
+import { Text, View, ImageBackground } from "react-native";
 import SingleActivity from "../containers/SingleActivity";
+import { ui, text } from "../theme";
 
 export default function ActivityScreen({ route, navigation }) {
-  const { name } = route.params;
-
-  const bookingAlert = (message) =>
-    Alert.alert("Event Booked!", message, [{ text: "Event Booked!" }]);
-
-  {
-    /* <Button
-    onPress={submitActivity}
-    title="Submit"
-    color="#841584"
-    accessibilityLabel="Submit form for activity"
-  />; */
-  }
-
+  const { title, img_url } = route.params;
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Name: {JSON.stringify(name)}</Text>
+    <View style={ui.container}>
       <SingleActivity navigation={navigation} />
-      <Button
-        title="Activity"
-        onPress={() => navigation.navigate("Activity")}
-      />
     </View>
   );
 }
