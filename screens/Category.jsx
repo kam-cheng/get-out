@@ -11,7 +11,10 @@ export default function CategoryScreen({ route, navigation }) {
         <Text style={text.body}>Browsing Activities</Text>
         <Text style={text.subtitle}>{JSON.stringify(name)}</Text>
       </View>
-      <ActivityList navigation={navigation} />
+      <ActivityList
+        navigation={navigation}
+        props={{ key: "category", query: "==", value: `${name}` }}
+      />
     </View>
   );
 }
