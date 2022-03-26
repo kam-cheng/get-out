@@ -20,12 +20,7 @@ export default function Map() {
       <Text>{user.name}</Text>
       <MapView
         style={styles.map}
-        initialRegion={{
-          latitude: user.lat,
-          longitude: user.lng,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        initialRegion={region}
         onRegionChangeComplete={(region) => {
           setRegion(region);
         }}
