@@ -22,16 +22,17 @@ export default function HomeStack() {
         name="Category"
         component={CategoryScreen}
         options={({ route }) => ({
-          // title: route.params.name,
-          title: "back",
+          title: route.params.title,
           headerTitleStyle: { fontFamily: appFont },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
         name="Activity"
         component={ActivityScreen}
         options={({ route }) => ({
-          title: route.params.title,
+          title: route.params.name,
+          headerTitleStyle: { fontFamily: appFont },
         })}
       />
     </Stack.Navigator>
