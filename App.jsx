@@ -6,6 +6,7 @@ import HomeScreen from "./screens/Home"; // unused?
 import HomeStack from "./navigation/HomeStack";
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
+import MapStack from "./navigation/MapStack";
 
 // importing global theme
 import { colors } from "./theme";
@@ -19,6 +20,8 @@ function App() {
       "https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg",
     rating: 5,
     verified: true,
+    lat: 53.452113418584396,
+    lng: -2.257417098108876,
   });
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -47,6 +50,15 @@ function App() {
             options={{
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="person" color={color} size={34} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="MapStack"
+            component={MapStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons name="map" color={color} size={34} />
               ),
             }}
           />
