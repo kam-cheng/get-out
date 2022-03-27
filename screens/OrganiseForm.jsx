@@ -12,7 +12,7 @@ import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
 import { text, ui } from "../theme/index";
 
-export default function OrganiseForm({ navigation }) {
+export default function OrganiseForm({ navigation, route }) {
   const { user } = useContext(UserContext);
   const [activity, setActivity] = React.useState();
   const [category, setCategory] = React.useState();
@@ -20,6 +20,16 @@ export default function OrganiseForm({ navigation }) {
   const [description, setDescription] = React.useState();
   const [image, setImage] = React.useState();
   const [location, setLocation] = React.useState();
+  const [latitude, setLatitude] = React.useState();
+  const [longitude, setLongitude] = React.useState();
+
+  React.useEffect(() => {
+    if (route.params?.data) {
+      setLocation(route.params.data.description);
+      setLatitude(route.params.details.geometry.location.lat);
+      setLongitude(route.params.details.geometry.location.lng);
+    }
+  }, [route.params?.data]);
 
   const completionAlert = (message) =>
     Alert.alert("Create New Activity", message, [{ text: "OK" }]);
@@ -33,6 +43,8 @@ export default function OrganiseForm({ navigation }) {
       image,
       location,
       organiser: user.name,
+      longitude,
+      latitude,
     }).then((msg) => {
       completionAlert(msg);
       navigation.navigate("Profile");
@@ -97,7 +109,14 @@ export default function OrganiseForm({ navigation }) {
         <Text style={text.body}>Location</Text>
         <TextInput
           style={styles.input}
-          onChangeText={setLocation}
+          value={location}
+          onPressIn={() => {
+            navigation.navigate({
+              name: "Location Input",
+              params: { setLocation },
+              merge: true,
+            });
+          }}
           ref={refLocation}
         />
         <Button
