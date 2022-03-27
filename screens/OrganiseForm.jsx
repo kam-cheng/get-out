@@ -110,7 +110,7 @@ export default function OrganiseForm({ navigation, route }) {
         <TextInput
           style={styles.input}
           value={location}
-          onPressIn={() => {
+          onFocus={() => {
             navigation.navigate({
               name: "Location Input",
               params: { setLocation },
