@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import fetchCollection from "../api/fetchCollection";
 import addHash from "../utils/addHash";
+import queryHashes from "../utils/queryHashes";
 
 export default function Map() {
   const { user } = useContext(UserContext);
@@ -36,6 +37,12 @@ export default function Map() {
     }
   });
 
+  if (activities) {
+    const filteredActivities = [];
+    console.log("yes!");
+    queryHashes().then((filteredActivities) => console.log(filteredActivities));
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -56,11 +63,11 @@ export default function Map() {
           />
         ))}
       </MapView>
-      <View style={{ alignItems: "center" }}>
+      {/* <View style={{ alignItems: "center" }}>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
           <Text>My location</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }

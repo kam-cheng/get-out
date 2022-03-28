@@ -10,5 +10,5 @@ export default async function addHash(x, y, id) {
   // for queries and the lat/lng for distance comparisons.
   const activityRef = firestore().collection("activities").doc(id);
 
-  activityRef.update({ geohash: hash });
+  activityRef.update({ geohash: hash, lat: lat, lng: lng });
 }
