@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { Text, Image, View, Alert } from "react-native";
-import moment from "moment";
 import { ui, text } from "../theme";
 import Separator from "../components/ui/Separator";
 import CustomButton from "../components/ui/CustomButton";
@@ -34,8 +33,14 @@ export default function ActivityItem({
     });
   }
 
-  const BookingCancelButton = () => {
-    if (item.Attendees.includes(user.name)) {
+  const BookCancelButton = () => {
+    if (!item.attendees) {
+      return (
+        <View>
+          <Text>Nothing to see here...</Text>
+        </View>
+      );
+    } else if (item?.attendees.includes(user.name)) {
       return (
         <CustomButton
           onPress={cancelActivityBooking}
@@ -55,16 +60,17 @@ export default function ActivityItem({
     }
   };
 
+  console.log(item);
+
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
-      {/* <Text>{item.Category}</Text> */}
-      <Text style={text.meta}>{moment(item.Date).calendar()}</Text>
-      <Text style={text.sectionTitleAlt}>{item.Activity}</Text>
+      <Text style={text.meta}>{item.date}</Text>
+      <Text style={text.sectionTitleAlt}>{item.title}</Text>
       <Separator />
       <Text style={text.body}>{item.body}</Text>
       <Separator />
-      <BookingCancelButton />
+      <BookCancelButton />
     </View>
   );
 }

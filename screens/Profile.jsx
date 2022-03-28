@@ -5,6 +5,7 @@ import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import ActivitiesList from "../containers/ActivitiesList";
 import CustomButton from "../components/ui/CustomButton";
+import Separator from "../components/ui/Separator";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
