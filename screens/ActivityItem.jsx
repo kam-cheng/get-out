@@ -60,8 +60,6 @@ export default function ActivityItem({
     }
   };
 
-  console.log(item);
-
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
