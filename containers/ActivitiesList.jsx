@@ -27,8 +27,8 @@ export default function ActivitiesList({ heading, props }) {
         <ActivityCard
           key={item.id}
           id={item.id}
-          title={item.Activity}
-          img_url={item.Image}
+          title={item.title}
+          imgUrl={item.imgUrl}
           handlePress={() => handlePress(item)}
         />
       ))}

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { Text, Image, View, Alert } from "react-native";
+import moment from "moment";
 import { ui, text } from "../theme";
 import Separator from "../components/ui/Separator";
-import moment from "moment";
 import CustomButton from "../components/ui/CustomButton";
 import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
@@ -57,12 +57,12 @@ export default function ActivityItem({
 
   return (
     <View style={ui.container}>
-      <Image style={ui.featureImage} source={{ uri: `${item.Image}` }} />
+      <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
       {/* <Text>{item.Category}</Text> */}
       <Text style={text.meta}>{moment(item.Date).calendar()}</Text>
       <Text style={text.sectionTitleAlt}>{item.Activity}</Text>
       <Separator />
-      <Text style={text.body}>{item.Description}</Text>
+      <Text style={text.body}>{item.body}</Text>
       <Separator />
       <BookingCancelButton />
     </View>
