@@ -22,7 +22,7 @@ export default function ActivitiesList({ heading, props }) {
     return <Text style={text.subtitle}>Loading Activities...</Text>; // or a spinner
   return (
     <>
-      <Text style={text.subtitle}>{heading}</Text>
+      <Text style={text.profileSectionTitle}>{heading}</Text>
       {activities.map((item) => (
         <ActivityCard
           key={item.id}

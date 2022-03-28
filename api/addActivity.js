@@ -7,20 +7,23 @@ const addActivity = async ({
   description,
   image,
   location,
+  longitude,
+  latitude,
   organiser,
 }) => {
   const data = {
-    Activity: activity,
-    Category: category,
-    Date: date,
-    Description: description,
-    Image: image,
-    Location: location,
-    Organiser: organiser,
+    title: activity,
+    category,
+    date,
+    body: description,
+    imgurl: image,
+    location,
+    organiser,
+    locationId: new firestore.GeoPoint(latitude, longitude),
   };
-  const postActivity = await firestore().collection("Activities").add(data);
+  await firestore().collection("activities").add(data);
 
-  return `added new Activity! Id: ${postActivity.id}`;
+  return `added new Activity!`;
 };
 
 export default addActivity;

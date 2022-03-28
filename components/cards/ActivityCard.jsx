@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { ui } from "../../theme";
+import { text, ui, colors } from "../../theme";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default function ActivityCard({ title, img_url, handlePress }) {
   return (
@@ -9,16 +10,23 @@ export default function ActivityCard({ title, img_url, handlePress }) {
       onPress={() => {
         handlePress(title);
       }}
+      style={ui.activityListTouchable}
     >
       <View style={ui.activityListContainer}>
         <Image
-          style={{ width: 100, height: 100 }}
+          resizeMode="cover"
+          style={ui.activityListImage}
           source={{ uri: `${img_url}` }}
         />
-        <View style={{ marginLeft: 12 }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>{title}</Text>
-          <Text>This is the description</Text>
-          <Text>Rating: 5</Text>
+        <View style={ui.activityListDescription}>
+          <Text style={text.mediumTitle}>{title}</Text>
+          <Text style={text.medium}>
+            The quick brown fox jumps over the lazy dog
+          </Text>
+          <View style={ui.metaContainer}>
+            <MaterialIcons name="star" color={colors.ratings} size={24} />
+            <Text style={text.meta}>4.9</Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
