@@ -13,7 +13,7 @@ export default function Activities() {
     fetchCollection("Activities").then((activities) => {
       setActivitiesList(activities);
     });
-  }, [activitiesList]);
+  }, []);
 
   return (
     <>
