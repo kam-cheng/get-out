@@ -1,5 +1,14 @@
-import React, { useContext, useRef } from "react";
-import { SafeAreaView, TextInput, Text, Button, Alert } from "react-native";
+
+import React, { useContext, useRef, useState } from "react";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import {
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  Text,
+  Button,
+  Alert,
+} from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
@@ -8,15 +17,37 @@ import { ui, text } from "../theme";
 
 export default function OrganiseForm({ navigation }) {
   const { user } = useContext(UserContext);
-  const [activity, setActivity] = React.useState();
-  const [category, setCategory] = React.useState();
-  const [date, setDate] = React.useState();
-  const [description, setDescription] = React.useState();
-  const [image, setImage] = React.useState();
-  const [location, setLocation] = React.useState();
+  const [activity, setActivity] = useState();
+  const [category, setCategory] = useState();
+  const [date, setDate] = useState(new Date());
+  const [description, setDescription] = useState();
+  const [image, setImage] = useState();
+  const [location, setLocation] = useState();
 
   const completionAlert = (message) =>
     Alert.alert("Create New Activity", message, [{ text: "OK" }]);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+      is24Hour: true,
+    });
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
 
   function submitActivity() {
     addActivity({
@@ -35,7 +66,6 @@ export default function OrganiseForm({ navigation }) {
 
   // setting references so that text input jumps to next input box when return key is pressed
   const refCategory = useRef();
-  const refDate = useRef();
   const refDescription = useRef();
   const refImage = useRef();
   const refLocation = useRef();
@@ -58,21 +88,15 @@ export default function OrganiseForm({ navigation }) {
           onChangeText={setCategory}
           ref={refCategory}
           returnKeyType="next"
-          onSubmitEditing={() => refDate.current.focus()}
+          onSubmitEditing={() => refDescription.current.focus()}
           placeholder="Category"
           blurOnSubmit={false}
         />
-        <Text style={text.inputLabel}>Date</Text>
-        <TextInput
-          style={ui.input}
-          onChangeText={setDate}
-          ref={refDate}
-          returnKeyType="next"
-          onSubmitEditing={() => refDescription.current.focus()}
-          placeholder="Date"
-          blurOnSubmit={false}
-        />
-        <Text style={text.inputLabel}>Description</Text>
+        <Button onPress={showDatepicker} title="Select Date!" />
+        <Button onPress={showTimepicker} title="Select Time!" />
+        <Text style={text.body}>Selected: {date.toLocaleString()}</Text>
+
+<Text style={text.inputLabel}>Description</Text>
         <TextInput
           style={ui.input}
           onChangeText={setDescription}
