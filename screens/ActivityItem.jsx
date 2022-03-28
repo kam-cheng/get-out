@@ -6,6 +6,7 @@ import Separator from "../components/ui/Separator";
 import moment from "moment";
 import CustomButton from "../components/ui/CustomButton";
 import bookActivity from "../api/bookActivity";
+import cancelBooking from "../api/cancelBooking";
 import UserContext from "../context/User";
 
 export default function ActivityItem({
@@ -26,6 +27,13 @@ export default function ActivityItem({
     });
   }
 
+  function cancelActivityBooking() {
+    cancelBooking(user.name, item.id).then((msg) => {
+      bookAlert(msg);
+      navigation.navigate("Profile");
+    });
+  }
+
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.Image}` }} />
@@ -37,10 +45,16 @@ export default function ActivityItem({
       <Separator />
       <Text style={text.body}>{item.Description}</Text>
       <Separator />
+
       <CustomButton
         onPress={booking}
         title="Book"
-        color="#841584"
+        accessibilityLabel="Book activity"
+      />
+      <CustomButton
+        onPress={cancelActivityBooking}
+        title="Cancel"
+        type="danger"
         accessibilityLabel="Book activity"
       />
     </View>

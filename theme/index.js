@@ -14,6 +14,8 @@ export const colors = {
   light: "#888",
   buttonPrimary: "#C1DBC2",
   lightGrey: "#F5F5F5",
+  danger: "#DC6054",
+  white: '#FFF'
 };
 
 // Default App UI
