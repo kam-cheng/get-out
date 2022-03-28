@@ -16,7 +16,7 @@ const addActivity = async ({
     category,
     date,
     body: description,
-    imgurl: image,
+    imgUrl: image,
     location,
     organiser,
     locationId: new firestore.GeoPoint(latitude, longitude),
