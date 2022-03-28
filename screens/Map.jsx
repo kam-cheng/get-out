@@ -23,25 +23,26 @@ export default function Map() {
 
   useEffect(() => {
     fetchCollection("activities").then((data) => {
+      data.map((activity) => {
+        if (!activity.geohash) {
+          addHash(
+            activity.locationId._latitude,
+            activity.locationId._longitude,
+            activity.id
+          );
+        }
+      });
       setActivities(data);
     });
   }, []);
 
-  activities.map((activity) => {
-    if (!activity.geohash) {
-      addHash(
-        activity.locationId._latitude,
-        activity.locationId._longitude,
-        activity.id
-      );
-    }
-  });
+  console.log(activities);
 
-  if (activities) {
-    const filteredActivities = [];
-    console.log("yes!");
-    queryHashes().then((filteredActivities) => console.log(filteredActivities));
-  }
+  // if (activities) {
+  //   const filteredActivities = [];
+  //   console.log("yes!");
+  //   queryHashes().then((filteredActivities) => console.log(filteredActivities));
+  // }
 
   return (
     <View style={styles.container}>
