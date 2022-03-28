@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import UserContext from "../context/User";
 import { useContext, useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import fetchCollection from "../api/fetchCollection";
+import addHash from "../utils/addHash";
 
 export default function Map() {
   const { user } = useContext(UserContext);
@@ -25,6 +25,16 @@ export default function Map() {
       setActivities(data);
     });
   }, []);
+
+  activities.map((activity) => {
+    if (!activity.hash) {
+      addHash(
+        activity.locationId._latitude,
+        activity.locationId._longitude,
+        activity.id
+      );
+    }
+  });
 
   return (
     <View style={styles.container}>
@@ -47,11 +57,7 @@ export default function Map() {
         ))}
       </MapView>
       <View style={{ alignItems: "center" }}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-          }}
-        >
+        <TouchableOpacity style={styles.button} onPress={() => {}}>
           <Text>My location</Text>
         </TouchableOpacity>
       </View>
