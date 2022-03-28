@@ -34,29 +34,37 @@ export default function ActivityItem({
     });
   }
 
+  const BookingCancelButton = () => {
+    if (item.Attendees.includes(user.name)) {
+      return (
+        <CustomButton
+          onPress={cancelActivityBooking}
+          title="Cancel"
+          type="danger"
+          accessibilityLabel="Book activity"
+        />
+      );
+    } else {
+      return (
+        <CustomButton
+          onPress={booking}
+          title="Book"
+          accessibilityLabel="Book activity"
+        />
+      );
+    }
+  };
+
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.Image}` }} />
       {/* <Text>{item.Category}</Text> */}
-      <Text style={text.meta}>
-        {moment(item.Date).format("ddd, D MMM YYYY • hA")}
-      </Text>
+      <Text style={text.meta}>{moment(item.Date).calendar()}</Text>
       <Text style={text.sectionTitleAlt}>{item.Activity}</Text>
       <Separator />
       <Text style={text.body}>{item.Description}</Text>
       <Separator />
-
-      <CustomButton
-        onPress={booking}
-        title="Book"
-        accessibilityLabel="Book activity"
-      />
-      <CustomButton
-        onPress={cancelActivityBooking}
-        title="Cancel"
-        type="danger"
-        accessibilityLabel="Book activity"
-      />
+      <BookingCancelButton />
     </View>
   );
 }
