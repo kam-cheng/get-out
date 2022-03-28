@@ -29,6 +29,7 @@ export default function ActivitiesList({ heading, props }) {
           id={item.id}
           title={item.title}
           imgUrl={item.imgUrl}
+          body={item.body}
           handlePress={() => handlePress(item)}
         />
       ))}
