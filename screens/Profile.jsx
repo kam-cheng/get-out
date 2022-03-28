@@ -5,12 +5,6 @@ import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import ActivitiesList from "../containers/ActivitiesList";
 import CustomButton from "../components/ui/CustomButton";
-import Separator from "../components/ui/Separator";
-import {
-  Collapse,
-  CollapseHeader,
-  CollapseBody,
-} from "accordion-collapse-react-native";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);

@@ -158,6 +158,7 @@ export const ui = {
   basicInput: {
     width: "95%",
     height: "100%",
+    fontFamily: appFont,
     fontSize: 18,
   },
   featureImage: {
