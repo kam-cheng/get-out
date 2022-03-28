@@ -12,10 +12,21 @@ export default function CustomButton({ title, onPress, type }) {
           backgroundColor: colors.buttonPrimary,
           borderWidth: 0,
         },
+        type === "danger" && {
+          backgroundColor: colors.danger,
+          borderWidth: 0,
+        },
       ]}
     >
       <View style={ui.buttonIconContainer}>
-        <Text style={text.buttonLabel}>{title}</Text>
+        <Text
+          style={[
+            text.buttonLabel,
+            type === "danger" && { color: colors.white },
+          ]}
+        >
+          {title}
+        </Text>
       </View>
     </TouchableOpacity>
   );

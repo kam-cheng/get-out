@@ -12,8 +12,10 @@ export const colors = {
   ratings: "#F7CE61",
   tile: "#F2F4F4",
   light: "#888",
-  buttonPrimary: "#C1DBC2",
+  buttonPrimary: "#7CB886",
   lightGrey: "#F5F5F5",
+  danger: "#DC6054",
+  white: "#FFF",
 };
 
 // Default App UI
@@ -169,8 +171,11 @@ export const ui = {
     marginBottom: 15,
   },
   profileHeaderContainer: {
-    padding: 15,
-    marginBottom: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 30,
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGrey,
   },
 };
 
