@@ -27,7 +27,7 @@ export default function Map() {
   }, []);
 
   activities.map((activity) => {
-    if (!activity.hash) {
+    if (!activity.geohash) {
       addHash(
         activity.locationId._latitude,
         activity.locationId._longitude,
