@@ -23,6 +23,10 @@ function App() {
     lat: 53.452113418584396,
     lng: -2.257417098108876,
   });
+
+  // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
+  // "geoLocation": {"_latitude": 51.50795973303849, "_longitude": -0.3234002831740929}
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
