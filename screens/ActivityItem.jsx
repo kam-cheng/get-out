@@ -16,8 +16,6 @@ export default function ActivityItem({
 }) {
   const { user } = useContext(UserContext);
 
-  console.log(user);
-
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
 
