@@ -14,8 +14,8 @@ const fetchDocuments = ({
   const ref = firestore()
     .collection(collection)
     .where(key, query, value)
-    .where("Date", time, currentTime)
-    .orderBy("Date", order);
+    .where("date", time, currentTime)
+    .orderBy("date", order);
 
   useEffect(
     () =>
@@ -25,7 +25,8 @@ const fetchDocuments = ({
           querySnapshot.forEach((doc) => {
             const data = doc.data();
             data.id = doc.id;
-            data.Date = data.Date.toDate().toString();
+
+            data.date = data.date.toDate().toString();
             list.push(data);
           });
           setState(list);

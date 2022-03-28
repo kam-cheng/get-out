@@ -1,19 +1,28 @@
 import * as React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { ui, text } from "../theme";
-import ActivityList from "../containers/ActivityList";
+import ActivitiesList from "../containers/ActivitiesList";
 
 export default function CategoryScreen({ route, navigation }) {
   const { name } = route.params;
   return (
     <ScrollView>
-      <View style={ui.container}>
-        <View>
-          <Text style={text.body}>Browsing Activities</Text>
-          <Text style={text.sectionTitle}>{JSON.stringify(name)}</Text>
-        </View>
-        <ActivityList navigation={navigation} />
+    <View style={ui.container}>
+      <View>
+        <Text style={text.body}>Browsing Activities</Text>
       </View>
-    </ScrollView>
+      <ActivitiesList
+        navigation={navigation}
+        heading={`${name}`}
+        props={{
+          query: "==",
+          collection: "activities",
+          key: "category",
+          value: `${name}`,
+        }}
+      />
+    </View>
+     </ScrollView>
+
   );
 }

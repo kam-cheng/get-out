@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { text, ui, colors } from "../../theme";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-export default function ActivityCard({ title, img_url, handlePress }) {
+export default function ActivityCard({ title, imgUrl, handlePress }) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -16,7 +16,7 @@ export default function ActivityCard({ title, img_url, handlePress }) {
         <Image
           resizeMode="cover"
           style={ui.activityListImage}
-          source={{ uri: `${img_url}` }}
+          source={{ uri: `${imgUrl}` }}
         />
         <View style={ui.activityListDescription}>
           <Text style={text.mediumTitle}>{title}</Text>

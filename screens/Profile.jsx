@@ -36,8 +36,8 @@ export default function ProfileScreen({ navigation }) {
           heading="Organised Activities"
           props={{
             query: "==",
-            collection: "Activities",
-            key: "Organiser",
+            collection: "activities",
+            key: "organiser",
             value: user.name,
           }}
         />
@@ -45,8 +45,8 @@ export default function ProfileScreen({ navigation }) {
           heading="Upcoming Activities"
           props={{
             query: "array-contains",
-            collection: "Activities",
-            key: "Attendees",
+            collection: "activities",
+            key: "attendees",
             value: user.name,
           }}
         />
@@ -54,8 +54,8 @@ export default function ProfileScreen({ navigation }) {
           heading="Past Activities"
           props={{
             query: "array-contains",
-            collection: "Activities",
-            key: "Attendees",
+            collection: "activities",
+            key: "attendees",
             value: user.name,
             time: "<",
             order: "desc",

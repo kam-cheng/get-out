@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ui } from "../../theme";
 
-export default function CategoryCard({ id, name, imgUrl, handlePress }) {
+export default function CategoryCard({ name, imgUrl, handlePress }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        handlePress(name, id);
+        handlePress(name);
       }}
       style={ui.touchableContainer}
     >
