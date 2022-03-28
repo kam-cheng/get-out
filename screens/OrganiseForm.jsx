@@ -90,7 +90,7 @@ export default function OrganiseForm({ navigation, route }) {
   if (loading) {
     submitButton = (
       <CustomButton
-        title="Submitting"
+        title="Submitting..."
         accessibilityLabel="Submiting form for activity"
         type="primary"
         disabled
