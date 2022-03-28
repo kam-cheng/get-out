@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { SafeAreaView, TextInput, Text, Button, Alert } from "react-native";
@@ -21,6 +22,7 @@ export default function OrganiseForm({ navigation, route }) {
   const [longitude, setLongitude] = useState();
   const [loading, setLoading] = useState(false);
 
+  // set location data
   useEffect(() => {
     if (route.params?.data) {
       setLocation(route.params.data.description);
@@ -54,6 +56,7 @@ export default function OrganiseForm({ navigation, route }) {
     showMode("time");
   };
 
+  // function to submit activity on button press, to return with a completion alert, and then to navigate back to the profile page
   function submitActivity() {
     setLoading(true);
     addActivity({
@@ -85,7 +88,7 @@ export default function OrganiseForm({ navigation, route }) {
   const refImage = useRef();
   const refLocation = useRef();
 
-  // making submit button a variable which changes after button press
+  // assigning the submit button a variable which changes after button press to Submitting...
   let submitButton;
   if (loading) {
     submitButton = (
@@ -106,6 +109,22 @@ export default function OrganiseForm({ navigation, route }) {
       />
     );
   }
+
+  // assigned image inputs to variable and hiding the other when one has a value input
+  let imageTextBox = (
+    <TextInput
+      style={ui.input}
+      onChangeText={setImage}
+      ref={refImage}
+      returnKeyType="next"
+      onSubmitEditing={() => refLocation.current.focus()}
+      placeholder="Image URL"
+      blurOnSubmit={false}
+    />
+  );
+  let imageUploadButton = <UploadImage setState={setImageUrl} />;
+  if (imageUrl) imageTextBox = <></>;
+  if (image) imageUploadButton = <></>;
 
   return (
     <KeyboardAwareScrollView>
@@ -145,16 +164,8 @@ export default function OrganiseForm({ navigation, route }) {
           blurOnSubmit={false}
         />
         <Text style={text.inputLabel}>Image</Text>
-        <TextInput
-          style={ui.input}
-          onChangeText={setImage}
-          ref={refImage}
-          returnKeyType="next"
-          onSubmitEditing={() => refLocation.current.focus()}
-          placeholder="Image URL"
-          blurOnSubmit={false}
-        />
-        <UploadImage setState={setImageUrl} />
+        {imageTextBox}
+        {imageUploadButton}
         <Text style={text.inputLabel}>Location</Text>
         <TextInput
           style={ui.input}

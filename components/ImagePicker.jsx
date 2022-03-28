@@ -6,6 +6,7 @@ export default function UploadImage({ setState }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
 
   const openImagePickerAsync = async () => {
+    // request permission to access phone storage
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -14,6 +15,7 @@ export default function UploadImage({ setState }) {
       return;
     }
 
+    // gets storage path of photo and adds to Selected Image state
     const pickerResult = await ImagePicker.launchImageLibraryAsync();
     setSelectedImage(pickerResult.uri);
 
@@ -27,6 +29,7 @@ export default function UploadImage({ setState }) {
     setState(selectedImage);
   }, [selectedImage]);
 
+  // only display photo when path has been added
   if (selectedImage !== null) {
     return (
       <View style={styles.container}>
