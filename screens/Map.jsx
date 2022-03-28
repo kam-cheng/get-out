@@ -8,11 +8,13 @@ export default function Map() {
   const { user, setUser } = useContext(UserContext);
 
   const [region, setRegion] = useState({
-    latitude: user.lat,
-    longitude: user.lng,
+    latitude: user.geoLocation._latitude,
+    longitude: user.geoLocation._longitude,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
+
+  console.log(user.geoLocation);
 
   return (
     <View style={styles.container}>
@@ -25,7 +27,10 @@ export default function Map() {
       >
         <MapView.Marker
           title="home"
-          coordinate={{ latitude: user.lat, longitude: user.lng }}
+          coordinate={{
+            latitude: user.geoLocation._latitude,
+            longitude: user.geoLocation._longitude,
+          }}
         />
       </MapView>
     </View>

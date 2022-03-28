@@ -20,8 +20,10 @@ function App() {
       "https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg",
     rating: 5,
     verified: true,
-    lat: 53.452113418584396,
-    lng: -2.257417098108876,
+    geoLocation: {
+      _latitude: 51.50795973303849,
+      _longitude: -0.3234002831740929,
+    },
   });
 
   // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
