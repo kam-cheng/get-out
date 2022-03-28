@@ -1,6 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,7 +11,8 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
-import { text, ui } from "../theme/index";
+import CustomButton from "../components/ui/CustomButton";
+import { ui, text } from "../theme";
 
 export default function OrganiseForm({ navigation, route }) {
   const { user } = useContext(UserContext);
@@ -84,48 +84,53 @@ export default function OrganiseForm({ navigation, route }) {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView style={ui.container}>
-        <Text style={text.body}>Activity</Text>
+        <Text style={text.inputLabel}>Activity</Text>
         <TextInput
-          style={styles.input}
+          style={ui.input}
           onChangeText={setActivity}
           returnKeyType="next"
           onSubmitEditing={() => refCategory.current.focus()}
+          placeholder="Activity"
           blurOnSubmit={false}
         />
-        <Text style={text.body}>Category</Text>
+        <Text style={text.inputLabel}>Category</Text>
         <TextInput
-          style={styles.input}
+          style={ui.input}
           onChangeText={setCategory}
           ref={refCategory}
           returnKeyType="next"
-          onSubmitEditing={() => refImage.current.focus()}
+          onSubmitEditing={() => refDescription.current.focus()}
+          placeholder="Category"
           blurOnSubmit={false}
         />
         <Button onPress={showDatepicker} title="Select Date!" />
         <Button onPress={showTimepicker} title="Select Time!" />
         <Text style={text.body}>Selected: {date.toLocaleString()}</Text>
-        <Text style={text.body}>Description</Text>
+
+        <Text style={text.inputLabel}>Description</Text>
         <TextInput
-          style={styles.input}
+          style={ui.input}
           onChangeText={setDescription}
           multiline
           ref={refDescription}
           returnKeyType="next"
           onSubmitEditing={() => refImage.current.focus()}
+          placeholder="Description"
           blurOnSubmit={false}
         />
-        <Text style={text.body}>Image</Text>
+        <Text style={text.inputLabel}>Image</Text>
         <TextInput
-          style={styles.input}
+          style={ui.input}
           onChangeText={setImage}
           ref={refImage}
           returnKeyType="next"
           onSubmitEditing={() => refLocation.current.focus()}
+          placeholder="Image URL"
           blurOnSubmit={false}
         />
-        <Text style={text.body}>Location</Text>
+        <Text style={text.inputLabel}>Location</Text>
         <TextInput
-          style={styles.input}
+          style={ui.input}
           value={location}
           onFocus={() => {
             navigation.navigate({
@@ -136,23 +141,13 @@ export default function OrganiseForm({ navigation, route }) {
           }}
           ref={refLocation}
         />
-        <Button
-          onPress={submitActivity}
+        <CustomButton
           title="Submit"
-          color="#841584"
           accessibilityLabel="Submit form for activity"
+          type="primary"
+          onPress={submitActivity}
         />
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    width: 300,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
