@@ -27,7 +27,7 @@ function App() {
   });
 
   // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
-  // "geoLocation": {"_latitude": 51.50795973303849, "_longitude": -0.3234002831740929}
+  // "locationId": {"_latitude": 51.50795973303849, "_longitude": -0.3234002831740929}
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

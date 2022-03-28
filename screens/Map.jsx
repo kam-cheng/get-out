@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import UserContext from "../context/User";
 import { useContext, useState, useEffect } from "react";
 import MapView from "react-native-maps";
@@ -8,23 +9,22 @@ import fetchCollection from "../api/fetchCollection";
 export default function Map() {
   const { user } = useContext(UserContext);
 
-  // This defines the initial region
-  const [region, setRegion] = useState({
+  const initialState = {
     latitude: user.locationId._latitude,
     longitude: user.locationId._longitude,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
-  });
+  };
+  // This defines the initial region
+  const [region, setRegion] = useState(initialState);
 
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     fetchCollection("activities").then((data) => {
-      setActivities((currActivities) => [...currActivities, data]);
+      setActivities(data);
     });
   }, []);
-
-  activities.map((act) => console.log("Activity: ", act));
 
   return (
     <View style={styles.container}>
@@ -35,27 +35,26 @@ export default function Map() {
           setRegion(region);
         }}
       >
-        {/* {activities.map((activity) => {
-          return (
-            <MapView.Marker
-              title={activity.title}
-              // description={activity.body.substring(0, 150)}
-              coordinate={{
-                latitude: activity.locationId._latitude,
-                longitude: activity.locationId._longitude,
-              }}
-            />
-          );
-        })} */}
-
-        {/* <MapView.Marker
-          title={user.name}
-          coordinate={{
-            latitude: user.locationId._latitude,
-            longitude: user.locationId._longitude,
-          }}
-        /> */}
+        {activities.map((activity) => (
+          <MapView.Marker
+            key={activity.id}
+            title={activity.title}
+            coordinate={{
+              latitude: activity.locationId._latitude,
+              longitude: activity.locationId._longitude,
+            }}
+          />
+        ))}
       </MapView>
+      <View style={{ alignItems: "center" }}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+          }}
+        >
+          <Text>My location</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -65,7 +64,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   map: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
+  },
+  button: {
+    width: "30%",
+    padding: 12,
+    borderRadius: 5,
+    backgroundColor: "#7bb886",
   },
 });
