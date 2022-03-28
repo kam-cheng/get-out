@@ -11,6 +11,7 @@ const uploadImage = async (path) => {
     return url;
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { SafeAreaView, TextInput, Text, Button, Alert } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -10,18 +10,18 @@ import UploadImage from "../components/ImagePicker";
 
 export default function OrganiseForm({ navigation, route }) {
   const { user } = useContext(UserContext);
-  const [activity, setActivity] = React.useState();
-  const [category, setCategory] = React.useState();
+  const [activity, setActivity] = useState();
+  const [category, setCategory] = useState();
   const [date, setDate] = useState(new Date());
-  const [description, setDescription] = React.useState();
-  const [image, setImage] = React.useState();
-  const [imageUrl, setImageUrl] = React.useState();
-  const [location, setLocation] = React.useState();
-  const [latitude, setLatitude] = React.useState();
-  const [longitude, setLongitude] = React.useState();
-  const [loading, setLoading] = React.useState(false);
+  const [description, setDescription] = useState();
+  const [image, setImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
+  const [location, setLocation] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (route.params?.data) {
       setLocation(route.params.data.description);
       setLatitude(route.params.details.geometry.location.lat);

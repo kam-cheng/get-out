@@ -4,6 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 
 export default function UploadImage({ setState }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
+
   const openImagePickerAsync = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -17,9 +18,11 @@ export default function UploadImage({ setState }) {
     setSelectedImage(pickerResult.uri);
 
     if (pickerResult.cancelled === true) {
-      return;
+      setSelectedImage(null);
     }
   };
+
+  // pass selectedImage back to parent component
   useEffect(() => {
     setState(selectedImage);
   }, [selectedImage]);
@@ -69,8 +72,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   thumbnail: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 350,
     resizeMode: "contain",
   },
 });

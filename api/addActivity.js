@@ -31,6 +31,7 @@ const addActivity = async ({
     return `added new Activity!`;
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 
