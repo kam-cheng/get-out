@@ -20,12 +20,11 @@ export default function Map() {
 
   useEffect(() => {
     fetchCollection("activities").then((data) => {
-      // setActivities((currActivites) => [...activities, data]);
-      console.log("⭐️", data);
+      setActivities((currActivities) => [...currActivities, data]);
     });
   }, []);
 
-  activities.map((act) => console.log(JSON.stringify(act)));
+  activities.map((act) => console.log("Activity: ", act));
 
   return (
     <View style={styles.container}>
