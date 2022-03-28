@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import UserContext from "../context/User";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import MapView from "react-native-maps";
+import fetchCollection from "../api/fetchCollection";
 
 export default function Map() {
   const { user } = useContext(UserContext);
@@ -15,6 +16,17 @@ export default function Map() {
     longitudeDelta: 0.01,
   });
 
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    fetchCollection("activities").then((data) => {
+      // setActivities((currActivites) => [...activities, data]);
+      console.log("⭐️", data);
+    });
+  }, []);
+
+  activities.map((act) => console.log(JSON.stringify(act)));
+
   return (
     <View style={styles.container}>
       <MapView
@@ -24,13 +36,26 @@ export default function Map() {
           setRegion(region);
         }}
       >
-        <MapView.Marker
+        {/* {activities.map((activity) => {
+          return (
+            <MapView.Marker
+              title={activity.title}
+              // description={activity.body.substring(0, 150)}
+              coordinate={{
+                latitude: activity.locationId._latitude,
+                longitude: activity.locationId._longitude,
+              }}
+            />
+          );
+        })} */}
+
+        {/* <MapView.Marker
           title={user.name}
           coordinate={{
             latitude: user.locationId._latitude,
             longitude: user.locationId._longitude,
           }}
-        />
+        /> */}
       </MapView>
     </View>
   );
