@@ -92,7 +92,7 @@ export default function OrganiseForm({ navigation, route }) {
       <CustomButton
         title="Submitting..."
         accessibilityLabel="Submiting form for activity"
-        type="primary"
+        type="inactive"
         disabled
       />
     );
