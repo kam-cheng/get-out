@@ -5,16 +5,15 @@ import { useContext, useState } from "react";
 import MapView from "react-native-maps";
 
 export default function Map() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
+  // This defines the initial region
   const [region, setRegion] = useState({
-    latitude: user.geoLocation._latitude,
-    longitude: user.geoLocation._longitude,
+    latitude: user.locationId._latitude,
+    longitude: user.locationId._longitude,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
-
-  console.log(user.geoLocation);
 
   return (
     <View style={styles.container}>
@@ -26,10 +25,10 @@ export default function Map() {
         }}
       >
         <MapView.Marker
-          title="home"
+          title={user.name}
           coordinate={{
-            latitude: user.geoLocation._latitude,
-            longitude: user.geoLocation._longitude,
+            latitude: user.locationId._latitude,
+            longitude: user.locationId._longitude,
           }}
         />
       </MapView>

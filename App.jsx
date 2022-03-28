@@ -20,7 +20,7 @@ function App() {
       "https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg",
     rating: 5,
     verified: true,
-    geoLocation: {
+    locationId: {
       _latitude: 51.50795973303849,
       _longitude: -0.3234002831740929,
     },
