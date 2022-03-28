@@ -1,14 +1,13 @@
 import firestore from "@react-native-firebase/firestore";
-import UserContext from "../context/User";
-import React, { useContext } from "react-native";
 
-export default bookActivity = async ({activityId}) => {
- const {user: {name}} = useContext(UserContext)
+export default bookActivity = async (username, activityId) => {
+  try {
+    const book = await firestore()
+      .doc(`Activities/${activityId}`)
+      .update({ Attendees: firestore.FieldValue.arrayUnion(username) });
 
- const book = firestore().doc(`activities/${activityId}`).update({attendees: firestore.FieldValue.arrayUnion({name})})
-
- return `Event booked! Id: ${activityId}`
-
-}
-
-
+    return `Event booked! Id: ${activityId}`;
+  } catch (err) {
+    console.log(err);
+  }
+};
