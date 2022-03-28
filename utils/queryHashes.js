@@ -36,7 +36,7 @@ export default function queryHashes() {
         const distanceInKm = distanceBetween([lat, lng], center);
         const distanceInM = distanceInKm * 1000;
         if (distanceInM <= radiusInM) {
-          matchingDocs.push(doc);
+          matchingDocs.push(doc.data());
         }
       }
     }

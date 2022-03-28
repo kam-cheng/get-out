@@ -18,11 +18,11 @@ export default function Map() {
   };
   // This defines the initial region
   const [region, setRegion] = useState(initialState);
-
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     fetchCollection("activities").then((data) => {
+      // add a geohash to every new doc
       data.map((activity) => {
         if (!activity.geohash) {
           addHash(
@@ -32,17 +32,10 @@ export default function Map() {
           );
         }
       });
-      setActivities(data);
+      // query by radius (currently hard-coded in function)
+      queryHashes().then((filteredActs) => setActivities(filteredActs));
     });
   }, []);
-
-  console.log(activities);
-
-  // if (activities) {
-  //   const filteredActivities = [];
-  //   console.log("yes!");
-  //   queryHashes().then((filteredActivities) => console.log(filteredActivities));
-  // }
 
   return (
     <View style={styles.container}>
