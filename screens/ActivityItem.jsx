@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Text, Image, Alert, Button } from "react-native";
-import bookActivity from "../api/bookActivity";
-
+import { Text, Image, View } from "react-native";
+import { ui, text } from "../theme";
+import Separator from "../components/ui/Separator";
+import moment from "moment";
 
 export default function ActivityItem({
   route: {
@@ -22,22 +23,22 @@ export default function ActivityItem({
   }
 
   return (
-    <>
-      <Text>{item.Activity}</Text>
-      <Text>{item.Category}</Text>
-      <Text>{item.Date}</Text>
-      <Image
-        style={{ width: 400, height: 400 }}
-        source={{ uri: `${item.Image}` }}
-      />
-      <Text>{item.Description}</Text>
-
-      <Button
+    <View style={ui.container}>
+      <Image style={ui.featureImage} source={{ uri: `${item.Image}` }} />
+      {/* <Text>{item.Category}</Text> */}
+      <Text style={text.meta}>
+        {moment(item.Date).format("ddd, D MMM YYYY • hA")}
+      </Text>
+      <Text style={text.sectionTitleAlt}>{item.Activity}</Text>
+      <Separator />
+      <Text style={text.body}>{item.Description}</Text>
+       <Separator />
+       <Button
           onPress={booking}
           title="Book"
           color="#841584"
           accessibilityLabel="Book activity"
         />
-    </>
+    </View>
   );
 }
