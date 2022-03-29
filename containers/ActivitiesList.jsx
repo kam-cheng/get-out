@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { Text, ActivityIndicator, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { text } from "../theme";
 import fetchDocuments from "../api/fetchDocuments";
@@ -19,7 +19,12 @@ export default function ActivitiesList({ heading, props }) {
     navigation.navigate("Activity", { item });
   };
 
-  if (loading) return <Text style={text.subtitle}>Loading Activities...</Text>; // or a spinner
+  if (loading)
+    return (
+      <View>
+        <ActivityIndicator size="large" color="#ff0000" />
+      </View>
+    );
   if (activities.length === 0) return <Text>?</Text>;
   return (
     <>
