@@ -87,10 +87,33 @@ export default function ActivityItem({
     }
   };
 
+  const date = {
+    format: (dateString) => {
+      const getDate = new Date(dateString).toDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
+
+      const time = new Date(dateString);
+      let hour = time.getHours();
+      let minutes = time.getMinutes();
+
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      if (minutes < 10) {
+        minutes = `0${minutes}`;
+      }
+
+      return `${getDate} • ${hour}:${minutes}`;
+    },
+  };
+
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
-      <Text style={text.meta}>{item.date}</Text>
+      <Text style={text.meta}>{date.format(item.date)}</Text>
       <Text style={text.sectionTitleAlt}>{item.title}</Text>
       <Separator />
       <Text style={text.body}>{item.body}</Text>
