@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
-import { Text, Image, View, Alert } from "react-native";
+import { Text, Image, View, Alert, ScrollView } from "react-native";
 import { ui, text } from "../theme";
 import Separator from "../components/ui/Separator";
 import CustomButton from "../components/ui/CustomButton";
@@ -111,14 +111,16 @@ export default function ActivityItem({
   };
 
   return (
-    <View style={ui.container}>
-      <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
-      <Text style={text.meta}>{date.format(item.date)}</Text>
-      <Text style={text.sectionTitleAlt}>{item.title}</Text>
-      <Separator />
-      <Text style={text.body}>{item.body}</Text>
-      <Separator />
-      <BookCancelButton />
-    </View>
+    <ScrollView>
+      <View style={ui.container}>
+        <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
+        <Text style={text.meta}>{date.format(item.date)}</Text>
+        <Text style={text.sectionTitleAlt}>{item.title}</Text>
+        <Separator />
+        <Text style={text.body}>{item.body}</Text>
+        <Separator />
+        <BookCancelButton />
+      </View>
+    </ScrollView>
   );
 }
