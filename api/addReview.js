@@ -1,8 +1,8 @@
 import firestore from "@react-native-firebase/firestore";
 
-const addReview = async ({ id, username, rating, review }) => {
+const addReview = async ({ id, user, rating, review }) => {
   const data = {
-    username,
+    user,
     rating,
     review,
   };

@@ -38,7 +38,7 @@ export default function RatingScreen({ id }) {
     setLoading(true);
     addReview({
       id,
-      username: user.name,
+      user: user.name,
       rating,
       review,
     })

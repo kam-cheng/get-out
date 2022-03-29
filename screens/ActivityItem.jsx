@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/prop-types */
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Text, Image, View, Alert, ScrollView } from "react-native";
 import { ui, text } from "../theme";
 import Separator from "../components/ui/Separator";
@@ -17,6 +18,7 @@ export default function ActivityItem({
   },
 }) {
   const { user } = useContext(UserContext);
+  const [review, setReview] = useState(false);
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
@@ -51,7 +53,7 @@ export default function ActivityItem({
     });
   }
 
-  const BookCancelButton = () => {
+  function BookCancelButton() {
     if (item.organiser === user.name) {
       return (
         <CustomButton
@@ -61,14 +63,11 @@ export default function ActivityItem({
           accessibilityLabel="Delete activity"
         />
       );
-    } else if (compareDate(item.date)) {
-      return (
-        <View>
-          <RatingScreen id={item.id} />
-          <Text style={text.body}>Leave a review</Text>
-        </View>
-      );
-    } else if (item.attendees.includes(user.name)) {
+    }
+    if (compareDate(item.date)) {
+      return <></>;
+    }
+    if (item.attendees.includes(user.name)) {
       return (
         <CustomButton
           onPress={cancelActivityBooking}
@@ -77,16 +76,15 @@ export default function ActivityItem({
           accessibilityLabel="Cancel activity"
         />
       );
-    } else {
-      return (
-        <CustomButton
-          onPress={booking}
-          title="Book"
-          accessibilityLabel="Book activity"
-        />
-      );
     }
-  };
+    return (
+      <CustomButton
+        onPress={booking}
+        title="Book"
+        accessibilityLabel="Book activity"
+      />
+    );
+  }
 
   const date = {
     format: (dateString) => {
@@ -111,6 +109,19 @@ export default function ActivityItem({
     },
   };
 
+  let reviewInput = (
+    <View>
+      <RatingScreen id={item.id} />
+      <Text style={text.body}>Leave a review</Text>
+    </View>
+  );
+
+  item.reviews.forEach((rating) => {
+    if (rating.user === user.name) {
+      reviewInput = <Text>User already submitted review</Text>;
+    }
+  });
+
   return (
     <ScrollView>
       <View style={ui.container}>
@@ -121,6 +132,7 @@ export default function ActivityItem({
         <Text style={text.body}>{item.body}</Text>
         <Separator />
         <BookCancelButton />
+        {reviewInput}
       </View>
     </ScrollView>
   );
