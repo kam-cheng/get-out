@@ -122,11 +122,12 @@ export default function ActivityItem({
 
   useEffect(() => {
     setReviews(false);
-    item.reviews.forEach((review) => {
-      if (review.user === user.name) {
-        setReviews(true);
-      }
-    });
+    if (item.reviews)
+      item.reviews.forEach((review) => {
+        if (review.user === user.name) {
+          setReviews(true);
+        }
+      });
   }, []);
 
   return (
