@@ -8,10 +8,11 @@ import UserContext from "../context/User";
 import fetchCollection from "../api/fetchCollection";
 import addHash from "../utils/addHash";
 import queryHashes from "../utils/queryHashes";
+import MultiSlider from "@ptomasroos/react-native-multi-slider";
 
 export default function Map() {
   const { user } = useContext(UserContext);
-  const radiusInKm = 5;
+
   const initialState = {
     latitude: user.locationId._latitude,
     longitude: user.locationId._longitude,
@@ -21,6 +22,8 @@ export default function Map() {
 
   const [region, setRegion] = useState(initialState);
   const [activities, setActivities] = useState([]);
+  const [radiusInKm, setRadiusInKm] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // add a geohash to every new doc
@@ -39,14 +42,37 @@ export default function Map() {
         user.locationId._latitude,
         user.locationId._longitude,
         radiusInKm
-      ).then((filteredActs) => setActivities(filteredActs));
+      ).then((filteredActs) => {
+        setActivities(filteredActs);
+      });
     });
-  }, []);
+  }, [radiusInKm]);
+
+  const handleChange = (e) => {
+    setIsLoading(true);
+    setRadiusInKm(e * 1.5);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+    return () => clearTimeout(timer);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>📍 {user.location}</Text>
+        <View style={styles.sliderContainer}>
+          <MultiSlider
+            min={1}
+            max={50}
+            sliderLength={200}
+            onValuesChange={(e) => {
+              handleChange(e);
+            }}
+          />
+          <Text>{radiusInKm}km</Text>
+        </View>
+        {isLoading && <Text style={{ fontStyle: "italic" }}>Loading...</Text>}
       </View>
       <MapView
         style={styles.map}
@@ -147,5 +173,10 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 19,
     textAlign: "center",
+  },
+  sliderContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
   },
 });
