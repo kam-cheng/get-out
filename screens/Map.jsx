@@ -84,7 +84,6 @@ export default function Map() {
         {activities.map((activity) => (
           <Marker
             key={activity.title}
-            title={activity.title}
             coordinate={{
               latitude: activity.locationId._latitude,
               longitude: activity.locationId._longitude,
