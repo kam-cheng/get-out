@@ -11,7 +11,6 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default function Map() {
   const { user } = useContext(UserContext);
-  console.log(user.locationId);
   // This defines the initial region
   const initialState = {
     latitude: user.locationId._latitude,
@@ -41,7 +40,9 @@ export default function Map() {
     });
   }, []);
 
-  // {"_latitude": 51.50795973303849, "_longitude": -0.3234002831740929}
+  const handleCallout = (id) => {
+    console.log(id);
+  };
 
   return (
     <View style={styles.container}>
@@ -61,7 +62,7 @@ export default function Map() {
               longitude: activity.locationId._longitude,
             }}
           >
-            <Callout tooltip>
+            <Callout tooltip onPress={() => handleCallout(activity)}>
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons

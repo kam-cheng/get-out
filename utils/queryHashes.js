@@ -30,7 +30,7 @@ export default function queryHashes() {
       for (const doc of snap.docs) {
         const lat = doc.get("lat");
         const lng = doc.get("lng");
-
+        const id = doc.id;
         // We have to filter out a few false positives due to GeoHash
         // accuracy, but most will match
         const distanceInKm = distanceBetween([lat, lng], center);
