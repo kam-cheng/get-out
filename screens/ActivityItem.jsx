@@ -87,8 +87,6 @@ export default function ActivityItem({
     }
   };
 
-  console.log(compareDate(item.date));
-
   return (
     <View style={ui.container}>
       <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
