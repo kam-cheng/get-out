@@ -20,7 +20,7 @@ export default function ActivityCard({ title, imgUrl, body, handlePress }) {
         />
         <View style={ui.activityListDescription}>
           <Text style={text.mediumTitle}>{title}</Text>
-          <Text style={text.medium}>{body.substring(0, 50)}...</Text>
+          <Text style={text.medium}>{body.substring(0, 40)}...</Text>
           <View style={ui.metaContainer}>
             <MaterialIcons name="star" color={colors.ratings} size={24} />
             <Text style={text.meta}>4.9</Text>
