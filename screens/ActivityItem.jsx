@@ -64,8 +64,9 @@ export default function ActivityItem({
     } else if (compareDate(item.date)) {
       return (
         <View>
-          <Text style={text.body}>Leave a review</Text>
-        </View>
+        <RatingScreen id={item.id}/>
+        <Text style={text.body}>Leave a review</Text>
+      </View>
       );
     } else if (item.attendees.includes(user.name)) {
       return (
