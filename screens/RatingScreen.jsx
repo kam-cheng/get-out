@@ -64,6 +64,7 @@ export default function RatingScreen({ id, setReviews }) {
       />
       <Text style={text.inputLabel}>Rating</Text>
       <TextInput
+        style={ui.input}
         keyboardType="numeric"
         onChangeText={setRating}
         maxLength={1}

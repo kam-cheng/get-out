@@ -110,18 +110,16 @@ export default function ActivityItem({
   };
 
   let reviewInput;
-
   if (reviews) reviewInput = <></>;
   else
     reviewInput = (
       <View>
-        <RatingScreen id={item.id} setReviews={setReviews} />
         <Text style={text.body}>Leave a review</Text>
+        <RatingScreen id={item.id} setReviews={setReviews} />
       </View>
     );
 
   useEffect(() => {
-    // setReviews(false);
     if (item.reviews)
       item.reviews.forEach((review) => {
         if (review.user === user.name) {
