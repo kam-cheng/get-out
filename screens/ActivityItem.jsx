@@ -120,7 +120,7 @@ export default function ActivityItem({
         <Separator />
         <Text style={text.body}>{item.body}</Text>
         <Separator />
-        <MapBox />
+        <MapBox item={item}/>
         <Separator />
         <BookCancelButton />
       </View>
