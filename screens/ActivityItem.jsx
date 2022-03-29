@@ -6,6 +6,7 @@ import Separator from "../components/ui/Separator";
 import CustomButton from "../components/ui/CustomButton";
 import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
+import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
 
 export default function ActivityItem({
@@ -18,6 +19,16 @@ export default function ActivityItem({
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
+
+  const compareDate = (item) => {
+    const today = new Date();
+    const itemDate = new Date(item);
+    if (today > itemDate) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   function booking() {
     bookActivity(user.name, item.id).then((msg) => {
@@ -33,20 +44,36 @@ export default function ActivityItem({
     });
   }
 
+  function deleteActivity() {
+    cancelActivity(item.id).then((msg) => {
+      bookAlert(msg);
+      navigation.navigate("Profile");
+    });
+  }
+
   const BookCancelButton = () => {
-    if (!item.attendees) {
+    if (item.organiser === user.name) {
+      return (
+        <CustomButton
+          onPress={deleteActivity}
+          title="Cancel Activity"
+          type="danger"
+          accessibilityLabel="Delete activity"
+        />
+      );
+    } else if (compareDate(item.date)) {
       return (
         <View>
-          <Text>Nothing to see here...</Text>
+          <Text style={text.body}>Leave a review</Text>
         </View>
       );
-    } else if (item?.attendees.includes(user.name)) {
+    } else if (item.attendees.includes(user.name)) {
       return (
         <CustomButton
           onPress={cancelActivityBooking}
-          title="Cancel"
+          title="Cancel Booking"
           type="danger"
-          accessibilityLabel="Book activity"
+          accessibilityLabel="Cancel activity"
         />
       );
     } else {
@@ -59,6 +86,8 @@ export default function ActivityItem({
       );
     }
   };
+
+  console.log(compareDate(item.date));
 
   return (
     <View style={ui.container}>
