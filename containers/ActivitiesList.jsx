@@ -22,10 +22,10 @@ export default function ActivitiesList({ heading, props }) {
   if (loading)
     return (
       <View>
-        <ActivityIndicator size="large" color="#ff0000" />
+        <ActivityIndicator size="large" color="#7DB886" />
       </View>
     );
-  if (activities.length === 0) return <Text>?</Text>;
+  if (activities.length === 0) return <Text>{""}</Text>;
   return (
     <>
       <Text style={text.profileSectionTitle}>{heading}</Text>
