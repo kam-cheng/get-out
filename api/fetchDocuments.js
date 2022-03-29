@@ -20,7 +20,6 @@ const fetchDocuments = (
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           data.id = doc.id;
-
           data.date = data.date.toDate().toString();
           list.push(data);
         });
@@ -32,6 +31,10 @@ const fetchDocuments = (
         setLoading(false);
       }
     );
+
+    return function cleanup() {
+      setLoading(false);
+    };
   }, []);
 };
 
