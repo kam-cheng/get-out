@@ -1,31 +1,30 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import UserContext from "../context/User";
-import { useContext, useState, useEffect } from "react";
 import MapView, { Marker, Callout } from "react-native-maps";
+import { useContext, useState, useEffect } from "react";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import UserContext from "../context/User";
 import fetchCollection from "../api/fetchCollection";
 import addHash from "../utils/addHash";
 import queryHashes from "../utils/queryHashes";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default function Map() {
   const { user } = useContext(UserContext);
-  // This defines the initial region
+  const radiusInKm = 10;
   const initialState = {
     latitude: user.locationId._latitude,
     longitude: user.locationId._longitude,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
+    latitudeDelta: 0.2,
+    longitudeDelta: 0.2,
   };
 
   const [region, setRegion] = useState(initialState);
-
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
+    // add a geohash to every new doc
     fetchCollection("activities").then((data) => {
-      // add a geohash to every new doc
       data.map((activity) => {
         if (!activity.geohash) {
           addHash(
@@ -35,17 +34,20 @@ export default function Map() {
           );
         }
       });
-      // query by radius (currently hard-coded in function)
-      queryHashes().then((filteredActs) => setActivities(filteredActs));
+      // query by radiusInKm and set activities
+      queryHashes(
+        user.locationId._latitude,
+        user.locationId._longitude,
+        radiusInKm
+      ).then((filteredActs) => setActivities(filteredActs));
     });
   }, []);
 
-  const handleCallout = (id) => {
-    console.log(id);
-  };
-
   return (
     <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>📍 {user.location}</Text>
+      </View>
       <MapView
         style={styles.map}
         initialRegion={region}
@@ -55,7 +57,7 @@ export default function Map() {
       >
         {activities.map((activity) => (
           <Marker
-            key={activity.id}
+            key={activity.title}
             title={activity.title}
             coordinate={{
               latitude: activity.locationId._latitude,
@@ -87,11 +89,6 @@ export default function Map() {
           }}
         />
       </MapView>
-      {/* <View style={{ alignItems: "center" }}>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
-          <Text>My location</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 }
@@ -129,5 +126,17 @@ const styles = StyleSheet.create({
   openIcon: {
     alignSelf: "flex-start",
     marginBottom: 10,
+  },
+  headerContainer: {
+    position: "absolute",
+    zIndex: 1,
+    padding: 15,
+    backgroundColor: "#fff",
+    width: "100%",
+    opacity: 0.8,
+  },
+  header: {
+    fontSize: 19,
+    textAlign: "center",
   },
 });

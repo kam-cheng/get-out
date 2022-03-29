@@ -2,10 +2,10 @@
 import firestore from "@react-native-firebase/firestore";
 import { geohashQueryBounds, distanceBetween } from "geofire-common";
 
-export default function queryHashes() {
+export default function queryHashes(userLat, userLng, radius) {
   // Find cities within 50km of London
-  const center = [51.5074, 0.1278];
-  const radiusInM = 50 * 1000;
+  const center = [userLat, userLng];
+  const radiusInM = radius * 1000;
 
   // Each item in 'bounds' represents a startAt/endAt pair. We have to issue
   // a separate query for each pair. There can be up to 9 pairs of bounds

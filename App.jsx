@@ -21,9 +21,10 @@ function App() {
     rating: 5,
     verified: true,
     locationId: {
-      _latitude: 51.50795973303849,
-      _longitude: -0.3234002831740929,
+      _latitude: 53.48346273455076,
+      _longitude: -2.243033295129627,
     },
+    location: "Manchester",
   });
 
   // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
