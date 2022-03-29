@@ -20,6 +20,7 @@ export default function ActivityItem({
 }) {
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState(true);
+  const [ratings, setRatings] = useState();
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
@@ -116,11 +117,16 @@ export default function ActivityItem({
     reviewInput = (
       <View>
         <Text style={text.body}>Leave a review</Text>
-        <RatingScreen id={item.id} setReviews={setReviews} />
+        <RatingScreen
+          id={item.id}
+          setReviews={setReviews}
+          setRatings={setRatings}
+        />
       </View>
     );
 
   useEffect(() => {
+    setRatings(item.reviews);
     if (item.reviews)
       item.reviews.forEach((review) => {
         if (review.user === user.name) {
@@ -142,7 +148,7 @@ export default function ActivityItem({
         <Separator />
         <BookCancelButton />
         {reviewInput}
-        <ReviewsList reviews={item.reviews} />
+        <ReviewsList reviews={ratings} />
       </View>
     </ScrollView>
   );
