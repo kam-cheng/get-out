@@ -1,31 +1,29 @@
-import React, { useContext, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  Text,
-  Button,
-  Alert,
-} from "react-native";
+import { SafeAreaView, TextInput, Text, Button, Alert } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import addActivity from "../api/addActivity";
 import UserContext from "../context/User";
 import CustomButton from "../components/ui/CustomButton";
 import { ui, text } from "../theme";
+import UploadImage from "../components/ImagePicker";
 
 export default function OrganiseForm({ navigation, route }) {
   const { user } = useContext(UserContext);
-  const [activity, setActivity] = React.useState();
-  const [category, setCategory] = React.useState();
+  const [activity, setActivity] = useState();
+  const [category, setCategory] = useState();
   const [date, setDate] = useState(new Date());
-  const [description, setDescription] = React.useState();
-  const [image, setImage] = React.useState();
-  const [location, setLocation] = React.useState();
-  const [latitude, setLatitude] = React.useState();
-  const [longitude, setLongitude] = React.useState();
+  const [description, setDescription] = useState();
+  const [image, setImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
+  const [location, setLocation] = useState();
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
+  // set location data
+  useEffect(() => {
     if (route.params?.data) {
       setLocation(route.params.data.description);
       setLatitude(route.params.details.geometry.location.lat);
@@ -58,21 +56,30 @@ export default function OrganiseForm({ navigation, route }) {
     showMode("time");
   };
 
+  // function to submit activity on button press, to return with a completion alert, and then to navigate back to the profile page
   function submitActivity() {
+    setLoading(true);
     addActivity({
       activity,
       category,
       date,
       description,
       image,
+      imageUrl,
       location,
       organiser: user.name,
       longitude,
       latitude,
-    }).then((msg) => {
-      completionAlert(msg);
-      navigation.navigate("Profile");
-    });
+    })
+      .then((msg) => {
+        setLoading(false);
+        completionAlert(msg);
+        navigation.navigate("Profile");
+      })
+      .catch((err) => {
+        setLoading(false);
+        completionAlert("Unable to submit form - please try again");
+      });
   }
 
   // setting references so that text input jumps to next input box when return key is pressed
@@ -80,6 +87,44 @@ export default function OrganiseForm({ navigation, route }) {
   const refDescription = useRef();
   const refImage = useRef();
   const refLocation = useRef();
+
+  // assigning the submit button a variable which changes after button press to Submitting...
+  let submitButton;
+  if (loading) {
+    submitButton = (
+      <CustomButton
+        title="Submitting..."
+        accessibilityLabel="Submiting form for activity"
+        type="inactive"
+        disabled
+      />
+    );
+  } else {
+    submitButton = (
+      <CustomButton
+        title="Submit"
+        accessibilityLabel="Submit form for activity"
+        type="primary"
+        onPress={submitActivity}
+      />
+    );
+  }
+
+  // assigned image inputs to variable and hiding the other when one has a value input
+  let imageTextBox = (
+    <TextInput
+      style={ui.input}
+      onChangeText={setImage}
+      ref={refImage}
+      returnKeyType="next"
+      onSubmitEditing={() => refLocation.current.focus()}
+      placeholder="Image URL"
+      blurOnSubmit={false}
+    />
+  );
+  let imageUploadButton = <UploadImage setState={setImageUrl} />;
+  if (imageUrl) imageTextBox = <></>;
+  if (image) imageUploadButton = <></>;
 
   return (
     <KeyboardAwareScrollView>
@@ -119,15 +164,8 @@ export default function OrganiseForm({ navigation, route }) {
           blurOnSubmit={false}
         />
         <Text style={text.inputLabel}>Image</Text>
-        <TextInput
-          style={ui.input}
-          onChangeText={setImage}
-          ref={refImage}
-          returnKeyType="next"
-          onSubmitEditing={() => refLocation.current.focus()}
-          placeholder="Image URL"
-          blurOnSubmit={false}
-        />
+        {imageTextBox}
+        {imageUploadButton}
         <Text style={text.inputLabel}>Location</Text>
         <TextInput
           style={ui.input}
@@ -141,12 +179,7 @@ export default function OrganiseForm({ navigation, route }) {
           }}
           ref={refLocation}
         />
-        <CustomButton
-          title="Submit"
-          accessibilityLabel="Submit form for activity"
-          type="primary"
-          onPress={submitActivity}
-        />
+        {submitButton}
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
