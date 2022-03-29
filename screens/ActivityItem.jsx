@@ -18,7 +18,7 @@ export default function ActivityItem({
   },
 }) {
   const { user } = useContext(UserContext);
-  const [reviews, setReviews] = useState(false);
+  const [reviews, setReviews] = useState(true);
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
@@ -110,23 +110,24 @@ export default function ActivityItem({
   };
 
   let reviewInput;
-
-  if (reviews) reviewInput = <Text>User already submitted review</Text>;
+  if (reviews) reviewInput = <></>;
   else
     reviewInput = (
       <View>
-        <RatingScreen id={item.id} setReviews={setReviews} />
         <Text style={text.body}>Leave a review</Text>
+        <RatingScreen id={item.id} setReviews={setReviews} />
       </View>
     );
 
   useEffect(() => {
-    setReviews(false);
-    item.reviews.forEach((review) => {
-      if (review.user === user.name) {
-        setReviews(true);
-      }
-    });
+    if (item.reviews)
+      item.reviews.forEach((review) => {
+        if (review.user === user.name) {
+          setReviews(true);
+          return;
+        }
+        setReviews(false);
+      });
   }, []);
 
   return (
