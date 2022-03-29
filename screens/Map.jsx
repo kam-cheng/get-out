@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout, Circle } from "react-native-maps";
 import { useContext, useState, useEffect } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import UserContext from "../context/User";
@@ -11,12 +11,12 @@ import queryHashes from "../utils/queryHashes";
 
 export default function Map() {
   const { user } = useContext(UserContext);
-  const radiusInKm = 10;
+  const radiusInKm = 5;
   const initialState = {
     latitude: user.locationId._latitude,
     longitude: user.locationId._longitude,
-    latitudeDelta: 0.2,
-    longitudeDelta: 0.2,
+    latitudeDelta: 0.3,
+    longitudeDelta: 0.3,
   };
 
   const [region, setRegion] = useState(initialState);
@@ -80,6 +80,15 @@ export default function Map() {
             </Callout>
           </Marker>
         ))}
+        <Circle
+          center={{
+            latitude: user.locationId._latitude,
+            longitude: user.locationId._longitude,
+          }}
+          radius={radiusInKm * 1000}
+          strokeColor="rgba(0, 0, 0, 0.3)"
+          fillColor="rgba(0, 179, 8, 0.1)"
+        />
         <MapView.Marker
           title={user.name}
           pinColor={"green"}
