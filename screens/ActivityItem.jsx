@@ -8,6 +8,7 @@ import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
+import MapBox from "../components/MapBox";
 
 export default function ActivityItem({
   navigation,
@@ -118,6 +119,8 @@ export default function ActivityItem({
         <Text style={text.sectionTitleAlt}>{item.title}</Text>
         <Separator />
         <Text style={text.body}>{item.body}</Text>
+        <Separator />
+        <MapBox />
         <Separator />
         <BookCancelButton />
       </View>
