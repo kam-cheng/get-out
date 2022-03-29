@@ -64,7 +64,7 @@ export default function Map() {
               longitude: activity.locationId._longitude,
             }}
           >
-            <Callout tooltip onPress={() => handleCallout(activity)}>
+            <Callout tooltip>
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons
