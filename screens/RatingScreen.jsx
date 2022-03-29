@@ -39,7 +39,7 @@ export default function RatingScreen({ id, setReviews }) {
     addReview({
       id,
       user: user.name,
-      rating,
+      rating: Number(rating),
       review,
     })
       .then((msg) => {

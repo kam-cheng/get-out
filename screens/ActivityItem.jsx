@@ -10,6 +10,7 @@ import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
 import RatingScreen from "./RatingScreen";
+import ReviewsList from "../containers/ReviewsList";
 
 export default function ActivityItem({
   navigation,
@@ -141,6 +142,7 @@ export default function ActivityItem({
         <Separator />
         <BookCancelButton />
         {reviewInput}
+        <ReviewsList reviews={item.reviews} />
       </View>
     </ScrollView>
   );
