@@ -1,15 +1,10 @@
 import firestore from "@react-native-firebase/firestore";
 import { useEffect } from "react";
 
-const fetchDocuments = ({
-  collection,
-  key,
-  query,
-  setState,
-  value,
-  time = ">=",
-  order = "asc",
-}) => {
+const fetchDocuments = (
+  { collection, key, query, setState, value, time = ">=", order = "asc" },
+  setLoading
+) => {
   const currentTime = firestore.Timestamp.now();
   const ref = firestore()
     .collection(collection)
@@ -17,26 +12,27 @@ const fetchDocuments = ({
     .where("date", time, currentTime)
     .orderBy("date", order);
 
-  useEffect(
-    () =>
-      ref.onSnapshot(
-        (querySnapshot) => {
-          const list = [];
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            data.id = doc.id;
+  useEffect(() => {
+    setLoading(true);
+    ref.onSnapshot(
+      (querySnapshot) => {
+        const list = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          data.id = doc.id;
 
-            data.date = data.date.toDate().toString();
-            list.push(data);
-          });
-          setState(list);
-        },
-        (err) => {
-          console.log(`Encountered error: ${err}`);
-        }
-      ),
-    []
-  );
+          data.date = data.date.toDate().toString();
+          list.push(data);
+        });
+        setState(list);
+        setLoading(false);
+      },
+      (err) => {
+        console.log(`Encountered error: ${err}`);
+        setLoading(false);
+      }
+    );
+  }, []);
 };
 
 export default fetchDocuments;
