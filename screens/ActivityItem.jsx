@@ -8,6 +8,7 @@ import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
+import RatingScreen from "./RatingScreen";
 
 export default function ActivityItem({
   navigation,
@@ -25,9 +26,8 @@ export default function ActivityItem({
     const itemDate = new Date(item);
     if (today > itemDate) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   function booking() {
@@ -64,9 +64,9 @@ export default function ActivityItem({
     } else if (compareDate(item.date)) {
       return (
         <View>
-        <RatingScreen id={item.id}/>
-        <Text style={text.body}>Leave a review</Text>
-      </View>
+          <RatingScreen id={item.id} />
+          <Text style={text.body}>Leave a review</Text>
+        </View>
       );
     } else if (item.attendees.includes(user.name)) {
       return (
