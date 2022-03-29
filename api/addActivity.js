@@ -1,4 +1,5 @@
 import firestore from "@react-native-firebase/firestore";
+import uploadImage from "./uploadImage";
 
 const addActivity = async ({
   activity,
@@ -6,21 +7,32 @@ const addActivity = async ({
   date,
   description,
   image,
+  imageUrl,
   location,
+  longitude,
+  latitude,
   organiser,
 }) => {
   const data = {
-    Activity: activity,
-    Category: category,
-    Date: date,
-    Description: description,
-    Image: image,
-    Location: location,
-    Organiser: organiser,
+    title: activity,
+    category,
+    date,
+    body: description,
+    imgUrl: image,
+    location,
+    organiser,
+    locationId: new firestore.GeoPoint(latitude, longitude),
   };
-  const postActivity = await firestore().collection("Activities").add(data);
+  // add uploaded photo if no url supplied
+  if (imageUrl !== null) data.imgUrl = await uploadImage(imageUrl);
 
-  return `added new Activity! Id: ${postActivity.id}`;
+  try {
+    await firestore().collection("activities").add(data);
+    return `added new Activity!`;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
 };
 
 export default addActivity;

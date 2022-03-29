@@ -40,6 +40,7 @@ function App() {
             tabBarActiveTintColor: colors.active,
             tabBarInactiveTintColor: colors.inactive,
             tabBarShowLabel: false,
+            tabBarStyle: { justifyContent: "space-between" },
           }}
         >
           <Tab.Screen

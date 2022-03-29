@@ -2,7 +2,7 @@ import * as React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/Home";
 import CategoryScreen from "../screens/Category";
-import ActivityScreen from "../screens/Activity";
+import ActivityItem from "../screens/ActivityItem";
 import { appFont } from "../theme";
 
 const Stack = createNativeStackNavigator();
@@ -15,23 +15,24 @@ export default function HomeStack() {
         component={HomeScreen}
         options={{
           headerShown: false,
-          headerTitleAlign: "center",
-          headerTitleStyle: { fontFamily: appFont },
         }}
       />
       <Stack.Screen
         name="Category"
         component={CategoryScreen}
         options={({ route }) => ({
-          title: route.params.name,
+          title: route.params.title,
+          headerTitleStyle: { fontFamily: appFont },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
+        options={{
+          headerTitleStyle: { fontFamily: appFont },
+          headerTitleAlign: "center",
+        }}
         name="Activity"
-        component={ActivityScreen}
-        options={({ route }) => ({
-          title: route.params.title
-        })}
+        component={ActivityItem}
       />
     </Stack.Navigator>
   );
