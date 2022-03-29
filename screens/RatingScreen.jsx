@@ -5,7 +5,7 @@ import { ui, text } from "../theme";
 import CustomButton from "../components/ui/CustomButton";
 import addReview from "../api/addReview";
 
-export default function RatingScreen({ id }) {
+export default function RatingScreen({ id, setReviews }) {
   const { user } = useContext(UserContext);
   const [review, setReview] = useState([]);
   const [rating, setRating] = useState([]);
@@ -45,7 +45,7 @@ export default function RatingScreen({ id }) {
       .then((msg) => {
         setLoading(false);
         completionAlert(msg);
-        navigation.navigate("Activity");
+        setReviews(true);
       })
       .catch((err) => {
         setLoading(false);
