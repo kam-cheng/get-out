@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, View, Text } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { text } from "../theme";
+import GeohashDistance from "geohash-distance";
+import UserContext from "../context/User";
 
 export default function MapBox({ item }) {
+  const { user } = useContext(UserContext);
   const { locationId, location } = item;
 
   const initialRegion = {
@@ -12,6 +15,11 @@ export default function MapBox({ item }) {
     longitude: locationId._longitude,
     latitudeDelta: 0.07,
     longitudeDelta: 0.02,
+  };
+
+  const distanceFromUser = () => {
+    const miles = GeohashDistance.inMiles(user.geohash, item.geohash);
+    return Math.ceil(miles);
   };
 
   return (
@@ -27,13 +35,16 @@ export default function MapBox({ item }) {
         </MapView>
       </View>
       <View style={styles.locationContainer}>
-        <MaterialIcons
-          name="place"
-          color="#ccc"
-          size={27}
-          style={styles.icon}
-        />
-        <Text style={text.meta}>{location}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <MaterialIcons
+            name="place"
+            color="#ccc"
+            size={27}
+            style={styles.icon}
+          />
+          <Text style={text.meta}>{location}</Text>
+        </View>
+        <Text style={text.meta}>{distanceFromUser()} Miles</Text>
       </View>
     </>
   );
@@ -54,5 +65,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
 });

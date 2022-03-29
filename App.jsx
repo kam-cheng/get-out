@@ -25,6 +25,7 @@ function App() {
       _longitude: -2.243033295129627,
     },
     location: "Manchester",
+    geohash: "gcpvj1k18",
   });
 
   // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
