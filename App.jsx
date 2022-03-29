@@ -53,20 +53,20 @@ function App() {
             }}
           />
           <Tab.Screen
-            name="ProfileStack"
-            component={ProfileStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <MaterialIcons name="person" color={color} size={34} />
-              ),
-            }}
-          />
-          <Tab.Screen
             name="MapStack"
             component={MapStack}
             options={{
               tabBarIcon: ({ color }) => (
                 <MaterialIcons name="map" color={color} size={34} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="ProfileStack"
+            component={ProfileStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialIcons name="person" color={color} size={34} />
               ),
             }}
           />
