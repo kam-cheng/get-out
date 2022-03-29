@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/prop-types */
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Text, Image, View, Alert, ScrollView } from "react-native";
 import { ui, text } from "../theme";
 import Separator from "../components/ui/Separator";
@@ -8,7 +9,11 @@ import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
+
 import MapBox from "../components/MapBox";
+
+import RatingScreen from "./RatingScreen";
+
 
 export default function ActivityItem({
   navigation,
@@ -17,6 +22,7 @@ export default function ActivityItem({
   },
 }) {
   const { user } = useContext(UserContext);
+  const [reviews, setReviews] = useState(true);
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
@@ -26,9 +32,8 @@ export default function ActivityItem({
     const itemDate = new Date(item);
     if (today > itemDate) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   function booking() {
@@ -52,7 +57,7 @@ export default function ActivityItem({
     });
   }
 
-  const BookCancelButton = () => {
+  function BookCancelButton() {
     if (item.organiser === user.name) {
       return (
         <CustomButton
@@ -62,13 +67,11 @@ export default function ActivityItem({
           accessibilityLabel="Delete activity"
         />
       );
-    } else if (compareDate(item.date)) {
-      return (
-        <View>
-          <Text style={text.body}>Leave a review</Text>
-        </View>
-      );
-    } else if (item.attendees.includes(user.name)) {
+    }
+    if (compareDate(item.date)) {
+      return <></>;
+    }
+    if (item.attendees.includes(user.name)) {
       return (
         <CustomButton
           onPress={cancelActivityBooking}
@@ -77,16 +80,15 @@ export default function ActivityItem({
           accessibilityLabel="Cancel activity"
         />
       );
-    } else {
-      return (
-        <CustomButton
-          onPress={booking}
-          title="Book"
-          accessibilityLabel="Book activity"
-        />
-      );
     }
-  };
+    return (
+      <CustomButton
+        onPress={booking}
+        title="Book"
+        accessibilityLabel="Book activity"
+      />
+    );
+  }
 
   const date = {
     format: (dateString) => {
@@ -111,6 +113,27 @@ export default function ActivityItem({
     },
   };
 
+  let reviewInput;
+  if (reviews) reviewInput = <></>;
+  else
+    reviewInput = (
+      <View>
+        <Text style={text.body}>Leave a review</Text>
+        <RatingScreen id={item.id} setReviews={setReviews} />
+      </View>
+    );
+
+  useEffect(() => {
+    if (item.reviews)
+      item.reviews.forEach((review) => {
+        if (review.user === user.name) {
+          setReviews(true);
+          return;
+        }
+        setReviews(false);
+      });
+  }, []);
+
   return (
     <ScrollView>
       <View style={ui.container}>
@@ -123,6 +146,7 @@ export default function ActivityItem({
         <MapBox item={item}/>
         <Separator />
         <BookCancelButton />
+        {reviewInput}
       </View>
     </ScrollView>
   );
