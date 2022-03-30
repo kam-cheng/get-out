@@ -21,7 +21,7 @@ export default function ActivityCard({
     rating = (
       <View style={ui.metaContainer}>
         <MaterialIcons name="star" color={colors.ratings} size={24} />
-        <Text style={text.meta}>{ratingsAverage}</Text>
+        <Text style={text.meta}>{`${ratingsAverage} (${reviews.length})`}</Text>
       </View>
     );
   }
