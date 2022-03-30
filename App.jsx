@@ -15,7 +15,7 @@ const Tab = createBottomTabNavigator();
 
 function App() {
   const [user, setUser] = useState({
-    name: "TestUser",
+    name: "Bender",
     avatar:
       "https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg",
     rating: 5,
