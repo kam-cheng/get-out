@@ -16,12 +16,10 @@ import { colors } from "./theme";
 const Tab = createBottomTabNavigator();
 
 function App() {
-  const [allUsers, setAllUsers] = useState([]);
   const [user, setUser] = useState();
   useEffect(() => {
     fetchCollection("users").then((users) => {
-      setAllUsers(users);
-      setUser(allUsers[0]);
+      setUser(users[1]);
     });
   }, []);
 
