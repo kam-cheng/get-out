@@ -9,9 +9,11 @@ import fetchCollection from "../api/fetchCollection";
 import addHash from "../utils/addHash";
 import queryHashes from "../utils/queryHashes";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Map() {
   const { user } = useContext(UserContext);
+  const navigation = useNavigation();
 
   const initialState = {
     latitude: user.locationId._latitude,
@@ -25,7 +27,6 @@ export default function Map() {
   const [radiusInKm, setRadiusInKm] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(activities);
   useEffect(() => {
     // add a geohash to every new doc
     fetchCollection("activities").then((data) => {
@@ -56,6 +57,10 @@ export default function Map() {
       setIsLoading(false);
     }, 4000);
     return () => clearTimeout(timer);
+  };
+
+  const handlePress = (item) => {
+    navigation.navigate("Activity", { item });
   };
 
   return (
@@ -90,7 +95,7 @@ export default function Map() {
               longitude: activity.locationId._longitude,
             }}
           >
-            <Callout tooltip onPress={() => console.log(activity.id)}>
+            <Callout tooltip onPress={() => handlePress(activity)}>
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons
