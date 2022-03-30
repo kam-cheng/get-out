@@ -25,6 +25,7 @@ export default function Map() {
   const [radiusInKm, setRadiusInKm] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log(activities);
   useEffect(() => {
     // add a geohash to every new doc
     fetchCollection("activities").then((data) => {
@@ -83,13 +84,13 @@ export default function Map() {
       >
         {activities.map((activity) => (
           <Marker
-            key={activity.title}
+            key={activity.id}
             coordinate={{
               latitude: activity.locationId._latitude,
               longitude: activity.locationId._longitude,
             }}
           >
-            <Callout tooltip>
+            <Callout tooltip onPress={() => console.log(activity.id)}>
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons
