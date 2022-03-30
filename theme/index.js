@@ -193,12 +193,12 @@ export const ui = {
     borderRadius: 10,
     marginRight: 15,
     marginBottom: 30,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   thumbnail: {
-    width: '100%',
-    height: '100%'
-  }
+    width: "100%",
+    height: "100%",
+  },
 };
 
 // Default App Text
@@ -284,9 +284,8 @@ export const text = {
     marginTop: 20,
     color: colors.light,
   },
-
   meta: {
-    marginLeft: 4,
+    marginLeft: 0,
     fontFamily: appFont,
     fontSize: 18,
     color: colors.light,
