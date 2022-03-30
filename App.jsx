@@ -19,7 +19,7 @@ function App() {
   const [user, setUser] = useState();
   useEffect(() => {
     fetchCollection("users").then((users) => {
-      setUser(users[1]);
+      setUser(users[3]);
     });
   }, []);
 
