@@ -14,7 +14,7 @@ export default function ReviewsList({ reviews }) {
   return (
     <View style={ui.container}>
       <Text style={[text.subtitle, { textAlign: "center" }, { marginTop: 20 }]}>
-        Average Rating:
+        Average Rating
       </Text>
       <AirbnbRating isDisabled defaultRating={ratingsAverage} size={30} />
       <Text style={[text.subtitle, { textAlign: "center" }, { marginTop: 20 }]}>
