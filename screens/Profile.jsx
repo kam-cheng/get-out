@@ -1,29 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useState, useEffect, useCallback } from "react";
-import { ScrollView, Text, Image, View, Button } from "react-native";
+import React, { useContext } from "react";
+import { ScrollView, Text, Image, View } from "react-native";
 import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import ActivitiesList from "../containers/ActivitiesList";
 import CustomButton from "../components/ui/CustomButton";
-import Separator from "../components/ui/Separator";
 import UserDropdown from "../components/UserDropdown";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
-  console.log(user.name);
-
-  const [render, setRender] = useState(false);
-
-  useEffect(() => {
-    setRender(user);
-  }, [user]);
-
-  console.log(render);
-
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
-  console.log("rendering...");
-
   return (
     <ScrollView>
       <View style={ui.profileHeaderContainer}>
@@ -32,7 +17,6 @@ export default function ProfileScreen({ navigation }) {
           <Text style={text.sectionTitle}>{user.name}</Text>
           <View>
             <Text>Not you?</Text>
-            <Button title="update" onPress={forceUpdate} />
             <UserDropdown />
           </View>
           <Image

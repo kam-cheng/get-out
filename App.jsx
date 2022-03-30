@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import HomeScreen from "./screens/Home"; // unused?
 import HomeStack from "./navigation/HomeStack";
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
