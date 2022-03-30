@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Text, View, TextInput, Alert } from "react-native";
+import { AirbnbRating } from "react-native-ratings";
 import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import CustomButton from "../components/ui/CustomButton";
@@ -59,19 +60,14 @@ export default function RatingScreen({ id, setReviews, setRatings }) {
 
   return (
     <View>
+      <Text style={text.inputLabel}>Rating</Text>
+      <AirbnbRating onFinishRating={setRating} />
       <Text style={text.inputLabel}>Review</Text>
       <TextInput
         style={ui.input}
         onChangeText={setReview}
         multiline
         placeholder="Review"
-      />
-      <Text style={text.inputLabel}>Rating</Text>
-      <TextInput
-        style={ui.input}
-        keyboardType="numeric"
-        onChangeText={setRating}
-        maxLength={1}
       />
       {submitButton}
     </View>
