@@ -288,7 +288,7 @@ export const text = {
   meta: {
     marginLeft: 4,
     fontFamily: appFont,
-    fontSize: 16,
+    fontSize: 18,
     color: colors.light,
   },
   buttonLabel: {
