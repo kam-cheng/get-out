@@ -13,10 +13,9 @@ export default function ReviewsList({ reviews }) {
 
   return (
     <View style={ui.container}>
-      <Text style={text.subtitle}>Reviews</Text>
-
       <Text style={text.subtitle}>Average Rating:</Text>
       <AirbnbRating isDisabled defaultRating={ratingsAverage} size={30} />
+      <Text style={text.subtitle}>Reviews ({reviews.length})</Text>
       {reviews.map((review) => (
         <View
           backgroundColor={colors.lightGrey}

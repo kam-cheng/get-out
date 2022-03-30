@@ -112,7 +112,7 @@ export default function ActivityItem({
   };
 
   let reviewInput;
-  if (reviews) reviewInput = <></>;
+  if (reviews || !compareDate(item.date)) reviewInput = <></>;
   else
     reviewInput = (
       <View>
