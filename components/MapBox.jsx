@@ -36,14 +36,15 @@ export default function MapBox({ item }) {
       </View>
       <View style={styles.locationContainer}>
         <View style={{ flexDirection: "row" }}>
-          <MaterialIcons
-            name="place"
-            color="#212121"
-            size={24}
-          />
+          <MaterialIcons name="place" color="#212121" size={24} />
           <Text style={text.body}>{location}</Text>
         </View>
-        <Text style={text.meta}>{distanceFromUser()} Miles</Text>
+        <View>
+          <View style={{ flexDirection: "row" }}>
+            <MaterialIcons name="directions-walk" size={24} />
+            <Text style={text.meta}>Distance - {distanceFromUser()} Miles</Text>
+          </View>
+        </View>
       </View>
     </>
   );
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
   },
   locationContainer: {
     marginTop: 15,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "flex-start",
     justifyContent: "space-between",
   },
 });
