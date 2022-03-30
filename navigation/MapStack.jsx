@@ -17,6 +17,7 @@ export default function MapStack() {
         options={{
           headerTitleStyle: { fontFamily: appFont },
           headerTitleAlign: "center",
+          title: "",
         }}
         name="Activity"
         component={ActivityItem}
