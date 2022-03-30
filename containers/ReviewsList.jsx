@@ -13,9 +13,13 @@ export default function ReviewsList({ reviews }) {
 
   return (
     <View style={ui.container}>
-      <Text style={text.subtitle}>Average Rating:</Text>
+      <Text style={[text.subtitle, { textAlign: "center" }, { marginTop: 20 }]}>
+        Average Rating
+      </Text>
       <AirbnbRating isDisabled defaultRating={ratingsAverage} size={30} />
-      <Text style={text.subtitle}>Reviews ({reviews.length})</Text>
+      <Text style={[text.subtitle, { textAlign: "center" }, { marginTop: 20 }]}>
+        Reviews ({reviews.length})
+      </Text>
       {reviews.map((review) => (
         <View
           backgroundColor={colors.lightGrey}
@@ -28,15 +32,15 @@ export default function ReviewsList({ reviews }) {
           <AirbnbRating
             isDisabled
             defaultRating={review.rating}
-            size={20}
+            size={15}
             showRating={false}
           />
           <Text
             style={[
               text.body,
               { fontWeight: "700" },
-              { marginTop: 20 },
-              { marginBottom: 20 },
+              { marginTop: 10 },
+              { marginBottom: 10 },
             ]}
           >
             {review.user}
