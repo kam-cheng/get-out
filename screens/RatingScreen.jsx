@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Text, View, TextInput, Alert } from "react-native";
+import { AirbnbRating } from "react-native-ratings";
 import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import CustomButton from "../components/ui/CustomButton";
 import addReview from "../api/addReview";
 
-export default function RatingScreen({ id, setReviews }) {
+export default function RatingScreen({ id, setReviews, setRatings }) {
   const { user } = useContext(UserContext);
   const [review, setReview] = useState([]);
   const [rating, setRating] = useState([]);
@@ -39,13 +40,17 @@ export default function RatingScreen({ id, setReviews }) {
     addReview({
       id,
       user: user.name,
-      rating,
+      rating: Number(rating),
       review,
     })
       .then((msg) => {
         setLoading(false);
         completionAlert(msg);
         setReviews(true);
+        setRatings((currentRatings) => [
+          ...currentRatings,
+          { user: user.name, rating: Number(rating), review },
+        ]);
       })
       .catch((err) => {
         setLoading(false);
@@ -55,19 +60,19 @@ export default function RatingScreen({ id, setReviews }) {
 
   return (
     <View>
-      <Text style={text.inputLabel}>Review</Text>
+      {/* <Text style={text.subtitle}>Rating</Text> */}
+      <AirbnbRating onFinishRating={setRating} />
+      {/* <Text style={text.subtitle}>Review</Text> */}
       <TextInput
-        style={ui.input}
+        style={[
+          ui.input,
+          { height: 150 },
+          { textAlignVertical: "top" },
+          { marginTop: 30 },
+        ]}
         onChangeText={setReview}
         multiline
         placeholder="Review"
-      />
-      <Text style={text.inputLabel}>Rating</Text>
-      <TextInput
-        style={ui.input}
-        keyboardType="numeric"
-        onChangeText={setRating}
-        maxLength={1}
       />
       {submitButton}
     </View>

@@ -13,6 +13,7 @@ import UserContext from "../context/User";
 import MapBox from "../components/MapBox";
 
 import RatingScreen from "./RatingScreen";
+import ReviewsList from "../containers/ReviewsList";
 
 
 export default function ActivityItem({
@@ -23,6 +24,7 @@ export default function ActivityItem({
 }) {
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState(true);
+  const [ratings, setRatings] = useState();
 
   const bookAlert = (message) =>
     Alert.alert("Event Booked!", message, [{ text: "OK" }]);
@@ -114,16 +116,21 @@ export default function ActivityItem({
   };
 
   let reviewInput;
-  if (reviews) reviewInput = <></>;
+  if (reviews || !compareDate(item.date)) reviewInput = <></>;
   else
     reviewInput = (
       <View>
-        <Text style={text.body}>Leave a review</Text>
-        <RatingScreen id={item.id} setReviews={setReviews} />
+        <Text style={text.subtitle}>Leave a comment</Text>
+        <RatingScreen
+          id={item.id}
+          setReviews={setReviews}
+          setRatings={setRatings}
+        />
       </View>
     );
 
   useEffect(() => {
+    setRatings(item.reviews);
     if (item.reviews)
       item.reviews.forEach((review) => {
         if (review.user === user.name) {
@@ -147,6 +154,7 @@ export default function ActivityItem({
         <Separator />
         <BookCancelButton />
         {reviewInput}
+        <ReviewsList reviews={ratings} />
       </View>
     </ScrollView>
   );
