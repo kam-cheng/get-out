@@ -17,11 +17,6 @@ export default function queryHashes(userLat, userLng, radius) {
   // depending on overlap, but in most cases there are 4.
   const bounds = geohashQueryBounds(center, radiusInM);
 
-  fetchCollection("activities").then((data) => {
-    for (const item of data) {
-      // console.log(item.id);
-    }
-  });
   const promises = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const b of bounds) {
@@ -50,6 +45,7 @@ export default function queryHashes(userLat, userLng, radius) {
         if (distanceInM <= radiusInM) {
           const newDoc = doc.data();
           newDoc.id = doc.id;
+          newDoc.date = newDoc.date.toDate().toString();
           matchingDocs.push(newDoc);
         }
       }
