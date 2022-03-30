@@ -16,6 +16,9 @@ export default function CustomButton({ title, onPress, type }) {
           backgroundColor: colors.danger,
           borderWidth: 0,
         },
+        type === 'picker' && {
+          width: '48%'
+        }
       ]}
     >
       <View style={ui.buttonIconContainer}>

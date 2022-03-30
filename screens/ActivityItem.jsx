@@ -9,6 +9,7 @@ import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
+import * as Moment from "../utils/moment";
 
 import MapBox from "../components/MapBox";
 
@@ -92,29 +93,6 @@ export default function ActivityItem({
     );
   }
 
-  const date = {
-    format: (dateString) => {
-      const getDate = new Date(dateString).toDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
-
-      const time = new Date(dateString);
-      let hour = time.getHours();
-      let minutes = time.getMinutes();
-
-      if (hour < 10) {
-        hour = `0${hour}`;
-      }
-      if (minutes < 10) {
-        minutes = `0${minutes}`;
-      }
-
-      return `${getDate} • ${hour}:${minutes}`;
-    },
-  };
-
   let reviewInput;
   if (reviews || !compareDate(item.date)) reviewInput = <></>;
   else
@@ -145,7 +123,7 @@ export default function ActivityItem({
     <ScrollView>
       <View style={ui.container}>
         <Image style={ui.featureImage} source={{ uri: `${item.imgUrl}` }} />
-        <Text style={text.meta}>{date.format(item.date)}</Text>
+        <Text style={text.meta}>{Moment.format(item.date)}</Text>
         <Text style={text.sectionTitleAlt}>{item.title}</Text>
         <Separator />
         <Text style={text.body}>{item.body}</Text>

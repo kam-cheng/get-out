@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { colors, ui, text } from "../theme";
 
-export default function UploadImage({ setState }) {
+export default function UploadImage({ setState, type }) {
   const [selectedImage, setSelectedImage] = React.useState(null);
 
   const openImagePickerAsync = async () => {
@@ -32,51 +33,28 @@ export default function UploadImage({ setState }) {
   // only display photo when path has been added
   if (selectedImage !== null) {
     return (
-      <View style={styles.container}>
-        <Image source={{ uri: selectedImage }} style={styles.thumbnail} />
+      <View style={ui.uploader}>
+        <Image source={{ uri: selectedImage }} style={ui.thumbnail} resizeMode="cover"/>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Upload Photo</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      onPress={openImagePickerAsync}
+      style={ui.buttonContainerPicker}
+    >
+      <View style={ui.buttonIconContainer}>
+        <Text
+          style={[
+            text.buttonLabel,
+            type === "danger" && { color: colors.white },
+          ]}
+        >
+          Upload Photo
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  logo: {
-    width: 305,
-    height: 159,
-    marginBottom: 20,
-  },
-  instructions: {
-    color: "#888",
-    fontSize: 18,
-    marginHorizontal: 15,
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: "blue",
-    padding: 20,
-    borderRadius: 5,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "#fff",
-  },
-  thumbnail: {
-    width: 350,
-    height: 350,
-    resizeMode: "contain",
-  },
-});

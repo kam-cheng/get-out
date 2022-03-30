@@ -8,6 +8,8 @@ import UserContext from "../context/User";
 import CustomButton from "../components/ui/CustomButton";
 import { ui, text } from "../theme";
 import UploadImage from "../components/ImagePicker";
+import * as Moment from "../utils/moment";
+import { View } from "react-native";
 
 export default function OrganiseForm({ navigation, route }) {
   const { user } = useContext(UserContext);
@@ -37,6 +39,7 @@ export default function OrganiseForm({ navigation, route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
+    console.log(currentDate);
   };
 
   const showMode = (currentMode) => {
@@ -148,9 +151,23 @@ export default function OrganiseForm({ navigation, route }) {
           placeholder="Category"
           blurOnSubmit={false}
         />
-        <Button onPress={showDatepicker} title="Select Date!" />
-        <Button onPress={showTimepicker} title="Select Time!" />
-        <Text style={text.body}>Selected: {date.toLocaleString()}</Text>
+        {/* <Button onPress={showDatepicker} title="Select Date!" />
+        <Button onPress={showTimepicker} title="Select Time!" /> */}
+
+        <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between' }}>
+          <CustomButton
+            onPress={showDatepicker}
+            title="Select Date"
+            type="picker"
+          />
+          <CustomButton
+            onPress={showTimepicker}
+            title="Select Time"
+            type="picker"
+          />
+        </View>
+
+        <Text style={text.dateInput}>{Moment.format(date)}</Text>
 
         <Text style={text.inputLabel}>Description</Text>
         <TextInput
