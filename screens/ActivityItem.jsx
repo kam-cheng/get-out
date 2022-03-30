@@ -116,7 +116,7 @@ export default function ActivityItem({
   else
     reviewInput = (
       <View>
-        <Text style={text.body}>Leave a review</Text>
+        <Text style={text.subtitle}>Leave a comment</Text>
         <RatingScreen
           id={item.id}
           setReviews={setReviews}

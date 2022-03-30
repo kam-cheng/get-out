@@ -13,21 +13,36 @@ export default function ReviewsList({ reviews }) {
 
   return (
     <View style={ui.container}>
-      <Text style={text.sectionTitle}>Reviews List</Text>
+      <Text style={text.subtitle}>Reviews</Text>
 
       <Text style={text.subtitle}>Average Rating:</Text>
       <AirbnbRating isDisabled defaultRating={ratingsAverage} size={30} />
       {reviews.map((review) => (
-        <View backgroundColor={colors.lightGrey} margin={10} key={review.user}>
-          <Text style={text.body}>User: {review.user}</Text>
-          <Text style={text.body}>Rating:</Text>
+        <View
+          backgroundColor={colors.lightGrey}
+          margin={10}
+          padding={20}
+          key={review.user}
+          borderRadius={10}
+        >
+          {/* <Text style={text.body}>Rating:</Text> */}
           <AirbnbRating
             isDisabled
             defaultRating={review.rating}
             size={20}
             showRating={false}
           />
-          <Text style={text.body}>Comment: {review.review}</Text>
+          <Text
+            style={[
+              text.body,
+              { fontWeight: "700" },
+              { marginTop: 20 },
+              { marginBottom: 20 },
+            ]}
+          >
+            {review.user}
+          </Text>
+          <Text style={text.body}>{review.review}</Text>
         </View>
       ))}
     </View>

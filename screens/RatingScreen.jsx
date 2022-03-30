@@ -60,11 +60,16 @@ export default function RatingScreen({ id, setReviews, setRatings }) {
 
   return (
     <View>
-      <Text style={text.inputLabel}>Rating</Text>
+      {/* <Text style={text.subtitle}>Rating</Text> */}
       <AirbnbRating onFinishRating={setRating} />
-      <Text style={text.inputLabel}>Review</Text>
+      {/* <Text style={text.subtitle}>Review</Text> */}
       <TextInput
-        style={ui.input}
+        style={[
+          ui.input,
+          { height: 150 },
+          { textAlignVertical: "top" },
+          { marginTop: 30 },
+        ]}
         onChangeText={setReview}
         multiline
         placeholder="Review"
