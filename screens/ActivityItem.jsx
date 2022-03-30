@@ -15,7 +15,6 @@ import MapBox from "../components/MapBox";
 import RatingScreen from "./RatingScreen";
 import ReviewsList from "../containers/ReviewsList";
 
-
 export default function ActivityItem({
   navigation,
   route: {
@@ -27,8 +26,15 @@ export default function ActivityItem({
   const [ratings, setRatings] = useState();
 
   const bookAlert = (message) =>
-    Alert.alert("Event Booked!", message, [{ text: "OK" }]);
+    Alert.alert("Activity Booked!", message, [{ text: "OK" }]);
 
+  const cancelAlert = (message) => {
+    Alert.alert("Activity Booking Cancelled!", message, [{ text: "OK" }]);
+  };
+
+  const deleteAlert = (message) => {
+    Alert.alert("Activity Deleted!", message, [{ text: "OK" }]);
+  };
   const compareDate = (item) => {
     const today = new Date();
     const itemDate = new Date(item);
@@ -39,22 +45,22 @@ export default function ActivityItem({
   };
 
   function booking() {
-    bookActivity(user.name, item.id).then((msg) => {
+    bookActivity(user.name).then((msg) => {
       bookAlert(msg);
       navigation.navigate("Profile");
     });
   }
 
   function cancelActivityBooking() {
-    cancelBooking(user.name, item.id).then((msg) => {
-      bookAlert(msg);
+    cancelBooking(user.name).then((msg) => {
+      cancelAlert(msg);
       navigation.navigate("Profile");
     });
   }
 
   function deleteActivity() {
     cancelActivity(item.id).then((msg) => {
-      bookAlert(msg);
+      deleteAlert(msg);
       navigation.navigate("Profile");
     });
   }
@@ -150,7 +156,7 @@ export default function ActivityItem({
         <Separator />
         <Text style={text.body}>{item.body}</Text>
         <Separator />
-        <MapBox item={item}/>
+        <MapBox item={item} />
         <Separator />
         <BookCancelButton />
         {reviewInput}

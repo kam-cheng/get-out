@@ -2,7 +2,7 @@ import { TouchableOpacity, Text, View } from "react-native";
 import { colors, text, ui } from "../../theme";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-export default function CustomButton({ title, onPress, type }) {
+export default function ({ title, onPress, type }) {
   return (
     <TouchableOpacity
       onPress={onPress}

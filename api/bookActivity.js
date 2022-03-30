@@ -6,7 +6,7 @@ export default bookActivity = async (username, activityId) => {
       .doc(`activities/${activityId}`)
       .update({ attendees: firestore.FieldValue.arrayUnion(username) });
 
-    return `Event booked! Id: ${activityId}`;
+    return `Event booked!`;
   } catch (err) {
     console.log(err);
   }
