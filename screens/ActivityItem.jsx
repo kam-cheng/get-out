@@ -9,9 +9,7 @@ import bookActivity from "../api/bookActivity";
 import cancelBooking from "../api/cancelBooking";
 import cancelActivity from "../api/cancelActivity";
 import UserContext from "../context/User";
-
 import MapBox from "../components/MapBox";
-
 import RatingScreen from "./RatingScreen";
 import ReviewsList from "../containers/ReviewsList";
 

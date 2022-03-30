@@ -1,6 +1,7 @@
+import React from "react";
 import { TextInput, View } from "react-native";
-import { ui, colors } from "../../theme";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { ui, colors } from "../../theme";
 
 export default function SearchBox(props) {
   return (
