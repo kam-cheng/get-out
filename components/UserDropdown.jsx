@@ -8,10 +8,6 @@ export default function UsersList() {
   const [usersList, setUsersList] = useState([]);
   const { user, setUser } = useContext(UserContext);
 
-  //   useEffect(() => {
-  //     fetchCollection("users").then((data) => setUsersList(data));
-  //   }, []);
-
   const userNamesAndIds = usersList.map((user) => {
     const obj = {
       label: user.name,
@@ -40,7 +36,6 @@ export default function UsersList() {
   //     });
   //   }, [selectedUser]);
 
-  console.log(selectedUser);
   DropDownPicker.setListMode("SCROLLVIEW");
   return (
     <DropDownPicker
