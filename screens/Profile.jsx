@@ -6,6 +6,7 @@ import { ui, text } from "../theme";
 import ActivitiesList from "../containers/ActivitiesList";
 import CustomButton from "../components/ui/CustomButton";
 import Separator from "../components/ui/Separator";
+import UsersList from "../containers/UsersList";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
@@ -16,6 +17,10 @@ export default function ProfileScreen({ navigation }) {
         <View style={ui.centerAlign}>
           <Text style={text.body}>Welcome Back</Text>
           <Text style={text.sectionTitle}>{user.name}</Text>
+          <View>
+            <Text>Not you?</Text>
+            <UsersList />
+          </View>
           <Image
             style={ui.avatar}
             source={{

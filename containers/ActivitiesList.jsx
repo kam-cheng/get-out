@@ -22,7 +22,7 @@ export default function ActivitiesList({ heading, props }) {
   if (loading)
     return (
       <View>
-        <ActivityIndicator size="large" color="#7DB886" />
+        <ActivityIndicator size="large" color="#BADCC0" />
       </View>
     );
   if (activities.length === 0) return <Text>{""}</Text>;

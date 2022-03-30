@@ -15,6 +15,7 @@ export default function ProfileStack() {
         options={{
           headerTitleStyle: { fontFamily: appFont },
           headerTitleAlign: "center",
+          headerShown: false,
         }}
         name="Profile"
         component={ProfileScreen}

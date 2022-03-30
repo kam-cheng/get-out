@@ -4,7 +4,7 @@ export const appFont = "Inter-Regular";
 // Default App Colors
 
 export const colors = {
-  active: "#7BB886",
+  active: "#BADCC0",
   inactive: "#B4B4B4",
   primary: "#212121",
   secondary: "#A5A5A5",
@@ -12,7 +12,7 @@ export const colors = {
   ratings: "#F7CE61",
   tile: "#F2F4F4",
   light: "#888",
-  buttonPrimary: "#7CB886",
+  buttonPrimary: "#BADCC0",
   lightGrey: "#F5F5F5",
   danger: "#DC6054",
   white: "#FFF",
@@ -242,7 +242,7 @@ export const text = {
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 20,
-    marginTop: 30,
+    marginTop: 20,
     color: colors.light,
   },
 
