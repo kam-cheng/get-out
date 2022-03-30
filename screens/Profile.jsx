@@ -15,11 +15,11 @@ export default function ProfileScreen({ navigation }) {
       <View style={ui.profileHeaderContainer}>
         <View style={ui.centerAlign}>
           <Text style={text.body}>Welcome Back</Text>
-          <Text style={text.sectionTitle}>Test User</Text>
+          <Text style={text.sectionTitle}>{user.name}</Text>
           <Image
             style={ui.avatar}
             source={{
-              uri: user.avatar,
+              uri: user.avatarUrl,
             }}
             accessibilityLabel="Profile Picture"
           />
