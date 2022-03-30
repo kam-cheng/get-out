@@ -120,6 +120,16 @@ export const ui = {
     width: "100%",
     justifyContent: "center",
   },
+  buttonContainerPicker: {
+    backgroundColor: colors.appBackground,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+    height: 56,
+    width: "100%",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
   separator: {
     marginVertical: 20,
     borderBottomColor: colors.tile,
@@ -177,6 +187,18 @@ export const ui = {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
   },
+  uploader: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginRight: 15,
+    marginBottom: 30,
+    overflow: 'hidden'
+  },
+  thumbnail: {
+    width: '100%',
+    height: '100%'
+  }
 };
 
 // Default App Text
@@ -208,6 +230,23 @@ export const text = {
     fontSize: 18,
     color: colors.primary,
     marginBottom: 5,
+  },
+  dateInput: {
+    height: 56,
+    width: "100%",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.light,
+    backgroundColor: colors.lightGrey,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingHorizontal: 15,
+    fontFamily: appFont,
+    fontSize: 16,
+    marginBottom: 30,
+    marginTop: 30,
+    color: colors.primary,
   },
   medium: {
     fontFamily: appFont,
@@ -249,7 +288,7 @@ export const text = {
   meta: {
     marginLeft: 4,
     fontFamily: appFont,
-    fontSize: 16,
+    fontSize: 18,
     color: colors.light,
   },
   buttonLabel: {

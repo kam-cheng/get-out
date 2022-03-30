@@ -13,8 +13,8 @@ export default function MapBox({ item }) {
   const initialRegion = {
     latitude: locationId._latitude,
     longitude: locationId._longitude,
-    latitudeDelta: 0.07,
-    longitudeDelta: 0.02,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
   };
 
   const distanceFromUser = () => {
@@ -38,11 +38,10 @@ export default function MapBox({ item }) {
         <View style={{ flexDirection: "row" }}>
           <MaterialIcons
             name="place"
-            color="#ccc"
-            size={27}
-            style={styles.icon}
+            color="#212121"
+            size={24}
           />
-          <Text style={text.meta}>{location}</Text>
+          <Text style={text.body}>{location}</Text>
         </View>
         <Text style={text.meta}>{distanceFromUser()} Miles</Text>
       </View>
@@ -53,7 +52,7 @@ export default function MapBox({ item }) {
 const styles = StyleSheet.create({
   mapContainer: {
     width: "100%",
-    height: 250,
+    height: 200,
     backgroundColor: "#ccc",
     borderRadius: 10,
     overflow: "hidden",

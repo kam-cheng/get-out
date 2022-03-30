@@ -9,9 +9,11 @@ import fetchCollection from "../api/fetchCollection";
 import addHash from "../utils/addHash";
 import queryHashes from "../utils/queryHashes";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Map() {
   const { user } = useContext(UserContext);
+  const navigation = useNavigation();
 
   const initialState = {
     latitude: user.locationId._latitude,
@@ -57,6 +59,10 @@ export default function Map() {
     return () => clearTimeout(timer);
   };
 
+  const handlePress = (item) => {
+    navigation.navigate("Activity", { item });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -83,13 +89,13 @@ export default function Map() {
       >
         {activities.map((activity) => (
           <Marker
-            key={activity.title}
+            key={activity.id}
             coordinate={{
               latitude: activity.locationId._latitude,
               longitude: activity.locationId._longitude,
             }}
           >
-            <Callout tooltip>
+            <Callout tooltip onPress={() => handlePress(activity)}>
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons
