@@ -15,13 +15,13 @@ import MapBox from "../components/MapBox";
 import RatingScreen from "./RatingScreen";
 import ReviewsList from "../containers/ReviewsList";
 
-
 export default function ActivityItem({
   navigation,
   route: {
     params: { item },
   },
 }) {
+
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState(true);
   const [ratings, setRatings] = useState();
@@ -150,7 +150,7 @@ export default function ActivityItem({
         <Separator />
         <Text style={text.body}>{item.body}</Text>
         <Separator />
-        <MapBox item={item}/>
+        <MapBox item={item} />
         <Separator />
         <BookCancelButton />
         {reviewInput}
