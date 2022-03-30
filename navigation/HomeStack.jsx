@@ -4,6 +4,7 @@ import HomeScreen from "../screens/Home";
 import CategoryScreen from "../screens/Category";
 import ActivityItem from "../screens/ActivityItem";
 import { appFont } from "../theme";
+import ProfileScreen from "../screens/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,14 @@ export default function HomeStack() {
         }}
         name="Activity"
         component={ActivityItem}
+      />
+      <Stack.Screen
+        options={{
+          headerTitleStyle: { fontFamily: appFont },
+          headerTitleAlign: "center",
+        }}
+        name="Profile"
+        component={ProfileScreen}
       />
     </Stack.Navigator>
   );
