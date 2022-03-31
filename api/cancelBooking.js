@@ -1,6 +1,6 @@
 import firestore from "@react-native-firebase/firestore";
 
-export default cancelBooking = async (username, activityId) => {
+const cancelBooking = async (username, activityId) => {
   try {
     const book = await firestore()
       .doc(`activities/${activityId}`)
@@ -11,3 +11,5 @@ export default cancelBooking = async (username, activityId) => {
     console.log(err);
   }
 };
+
+export default cancelBooking;

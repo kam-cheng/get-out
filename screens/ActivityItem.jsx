@@ -45,14 +45,14 @@ export default function ActivityItem({
   };
 
   function booking() {
-    bookActivity(user.name).then((msg) => {
+    bookActivity(user.name, item.id).then((msg) => {
       bookAlert(msg);
       navigation.navigate("Profile");
     });
   }
 
   function cancelActivityBooking() {
-    cancelBooking(user.name).then((msg) => {
+    cancelBooking(user.name, item.id).then((msg) => {
       cancelAlert(msg);
       navigation.navigate("Profile");
     });
