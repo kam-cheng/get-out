@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, ActivityIndicator, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { text } from "../theme";
 import fetchDocuments from "../api/fetchDocuments";
 import ActivityCard from "../components/cards/ActivityCard";
+import addHash from "../utils/addHash";
 
 export default function ActivitiesList({ heading, props }) {
   const [activities, setActivities] = useState([]);
@@ -14,6 +15,16 @@ export default function ActivitiesList({ heading, props }) {
   props.setState = setActivities;
 
   fetchDocuments(props, setLoading);
+
+  activities.map((activity) => {
+    if (!activity.geohash) {
+      addHash(
+        activity.locationId._latitude,
+        activity.locationId._longitude,
+        activity.id
+      );
+    }
+  });
 
   const handlePress = (item) => {
     navigation.navigate("Activity", { item });
