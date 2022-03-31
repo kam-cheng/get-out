@@ -5,6 +5,7 @@ import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import CustomButton from "../components/ui/CustomButton";
 import addReview from "../api/addReview";
+import Separator from "../components/ui/Separator";
 
 export default function RatingScreen({ id, setReviews, setRatings }) {
   const { user } = useContext(UserContext);
@@ -61,18 +62,25 @@ export default function RatingScreen({ id, setReviews, setRatings }) {
   return (
     <View>
       {/* <Text style={text.subtitle}>Rating</Text> */}
-      <AirbnbRating onFinishRating={setRating} />
+      <AirbnbRating onFinishRating={setRating} showRating={false} />
       {/* <Text style={text.subtitle}>Review</Text> */}
       <TextInput
         style={[
           ui.input,
-          { height: 150 },
-          { textAlignVertical: "top" },
-          { marginTop: 30 },
+          {
+            height: 200,
+            textAlignVertical: "top",
+            paddingHorizontal: 24,
+            fontSize: 18,
+            borderBottomWidth: 0,
+            borderRadius: 10,
+            marginTop: 20,
+            marginBottom: 20,
+          },
         ]}
         onChangeText={setReview}
         multiline
-        placeholder="Review"
+        placeholder="Leave a comment"
       />
       {submitButton}
     </View>

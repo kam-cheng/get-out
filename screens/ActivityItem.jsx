@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useState, useEffect } from "react";
 import { Text, Image, View, Alert, ScrollView } from "react-native";
-import { ui, text } from "../theme";
+import { ui, text, colors } from "../theme";
 import Separator from "../components/ui/Separator";
 import CustomButton from "../components/ui/CustomButton";
 import bookActivity from "../api/bookActivity";
@@ -20,7 +20,6 @@ export default function ActivityItem({
     params: { item },
   },
 }) {
-
   const { user } = useContext(UserContext);
   const [reviews, setReviews] = useState(true);
   const [ratings, setRatings] = useState();
@@ -103,7 +102,10 @@ export default function ActivityItem({
   else
     reviewInput = (
       <View>
-        <Text style={text.subtitle}>Leave a comment</Text>
+        <Separator />
+        <Text style={[text.subtitle, { textAlign: "center", marginTop: 20 }]}>
+          Rating
+        </Text>
         <RatingScreen
           id={item.id}
           setReviews={setReviews}
@@ -134,9 +136,17 @@ export default function ActivityItem({
         <Text style={text.body}>{item.body}</Text>
         <Separator />
         <MapBox item={item} />
-        <Separator />
+
         <BookCancelButton />
         {reviewInput}
+        <Separator
+          style={{
+            padding: 15,
+            borderBottomWidth: 1,
+            borderColor: colors.lightGrey,
+            marginBottom: 15,
+          }}
+        />
         <ReviewsList reviews={ratings} />
       </View>
     </ScrollView>
