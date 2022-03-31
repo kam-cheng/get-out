@@ -193,17 +193,29 @@ export const ui = {
     borderRadius: 10,
     marginRight: 15,
     marginBottom: 30,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   thumbnail: {
-    width: '100%',
-    height: '100%'
-  }
+    width: "100%",
+    height: "100%",
+  },
+  ratingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 15,
+    marginBottom: 30,
+  },
 };
 
 // Default App Text
 
 export const text = {
+  ratingContainerLabel: {
+    fontFamily: appFont,
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colors.primary,
+  },
   title: {
     fontFamily: appFont,
     fontSize: 50,
@@ -284,12 +296,18 @@ export const text = {
     marginTop: 20,
     color: colors.light,
   },
-
   meta: {
-    marginLeft: 4,
+    marginLeft: 0,
+    fontFamily: appFont,
+    fontSize: 16,
+    color: colors.light,
+  },
+  metaMapBox: {
+    marginLeft: 0,
     fontFamily: appFont,
     fontSize: 18,
     color: colors.light,
+    marginBottom: 15,
   },
   buttonLabel: {
     fontSize: 15,

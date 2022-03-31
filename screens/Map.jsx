@@ -10,6 +10,7 @@ import addHash from "../utils/addHash";
 import queryHashes from "../utils/queryHashes";
 import MultiSlider from "@ptomasroos/react-native-multi-slider";
 import { useNavigation } from "@react-navigation/native";
+import { colors, text } from "../theme";
 
 export default function Map() {
   const { user } = useContext(UserContext);
@@ -66,8 +67,23 @@ export default function Map() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>📍 {user.location}</Text>
-        <View style={styles.sliderContainer}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MaterialIcons name="near-me" color={colors.primary} size={20} />
+          {/* <Text style={styles.header}>📍 {user.location}</Text> */}
+          <Text style={[text.body, { marginLeft: 4 }]}>{user.location}</Text>
+        </View>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <MultiSlider
             min={1}
             max={50}
@@ -76,9 +92,20 @@ export default function Map() {
               handleChange(e);
             }}
           />
-          <Text>{radiusInKm}km</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <MaterialIcons name="place" color={colors.light} size={20} />
+            <Text style={text.meta}>{radiusInKm} Km</Text>
+          </View>
         </View>
-        {isLoading && <Text style={{ fontStyle: "italic" }}>Loading...</Text>}
+        {isLoading && (
+          <Text style={[text.meta, { textAlign: "center" }]}>...</Text>
+        )}
       </View>
       <MapView
         style={styles.map}
@@ -99,13 +126,16 @@ export default function Map() {
               <View>
                 <View style={styles.bubble}>
                   <MaterialIcons
-                    name="open-in-new"
-                    color={"#212121"}
-                    size={25}
+                    name="visibility"
+                    color={colors.meta}
+                    size={24}
                     style={styles.openIcon}
                   />
                   <Text style={styles.title}>{activity.title}</Text>
-                  <Text>{`${activity.body.substring(0, 20)}...`}</Text>
+                  <Text style={text.body}>{`${activity.body.substring(
+                    0,
+                    20
+                  )}...`}</Text>
                 </View>
               </View>
             </Callout>
@@ -122,7 +152,7 @@ export default function Map() {
         />
         <MapView.Marker
           title={user.name}
-          pinColor={"green"}
+          pinColor="#88E8A0"
           coordinate={{
             latitude: user.locationId._latitude,
             longitude: user.locationId._longitude,
@@ -148,23 +178,23 @@ const styles = StyleSheet.create({
   },
   bubble: {
     flexDirection: "column",
+    justifyContent: "flex-start",
     alignSelf: "flex-start",
     backgroundColor: "#fff",
-    borderRadius: 6,
-    borderColor: "#ccc",
-    borderWidth: 0.5,
+    borderRadius: 10,
     padding: 15,
   },
   title: {
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
   },
   image: {
     width: 50,
     height: 50,
   },
   openIcon: {
-    alignSelf: "flex-start",
+    alignSelf: "flex-end",
     marginBottom: 10,
   },
   headerContainer: {
@@ -173,7 +203,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#fff",
     width: "100%",
-    opacity: 0.8,
   },
   header: {
     fontSize: 19,

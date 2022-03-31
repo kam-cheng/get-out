@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet, View, Text } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { text } from "../theme";
+import { text, colors } from "../theme";
 import GeohashDistance from "geohash-distance";
 import UserContext from "../context/User";
 
@@ -40,9 +40,15 @@ export default function MapBox({ item }) {
           <Text style={text.body}>{location}</Text>
         </View>
         <View>
-          <View style={{ flexDirection: "row" }}>
-            <MaterialIcons name="directions-walk" size={24} />
-            <Text style={text.meta}>Distance - {distanceFromUser()} Miles</Text>
+          <View style={{ flexDirection: "row", marginTop: 5 }}>
+            <MaterialIcons
+              color={colors.light}
+              name="directions-walk"
+              size={24}
+            />
+            <Text style={text.metaMapBox}>
+              Distance - {distanceFromUser()} Miles
+            </Text>
           </View>
         </View>
       </View>
@@ -62,7 +68,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   locationContainer: {
-    marginTop: 15,
+    marginTop: 20,
+    marginBottom: 20,
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "space-between",
