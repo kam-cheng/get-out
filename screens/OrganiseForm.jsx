@@ -39,7 +39,6 @@ export default function OrganiseForm({ navigation, route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
-    console.log(currentDate);
   };
 
   const showMode = (currentMode) => {
@@ -77,7 +76,6 @@ export default function OrganiseForm({ navigation, route }) {
       .then((msg) => {
         // add geohash
         // addHash(longitude, latitude, )
-        console.log(msg);
         setLoading(false);
         completionAlert(msg);
         navigation.navigate("Profile");
