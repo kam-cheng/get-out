@@ -103,7 +103,7 @@ export default function ActivityItem({
   else
     reviewInput = (
       <View>
-        <Separator />
+        {/* <Separator /> */}
         <Text style={[text.subtitle, { textAlign: "center", marginTop: 20 }]}>
           Rating
         </Text>
@@ -140,7 +140,7 @@ export default function ActivityItem({
 
         <Separator />
         <OrganiserCard organiser={item.organiser} />
-        <Separator />
+        {/* <Separator /> */}
 
         <BookCancelButton />
         {reviewInput}
