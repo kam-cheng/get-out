@@ -75,6 +75,9 @@ export default function OrganiseForm({ navigation, route }) {
       latitude,
     })
       .then((msg) => {
+        // add geohash
+        // addHash(longitude, latitude, )
+        console.log(msg);
         setLoading(false);
         completionAlert(msg);
         navigation.navigate("Profile");
@@ -154,7 +157,13 @@ export default function OrganiseForm({ navigation, route }) {
         {/* <Button onPress={showDatepicker} title="Select Date!" />
         <Button onPress={showTimepicker} title="Select Time!" /> */}
 
-        <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between' }}>
+        <View
+          style={{
+            flexDirection: "row",
+            flex: 1,
+            justifyContent: "space-between",
+          }}
+        >
           <CustomButton
             onPress={showDatepicker}
             title="Select Date"
