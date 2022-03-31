@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, Image } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import fetchOrganiser from "../../api/fetchOrganiser";
 import { ui, text } from "../../theme";
 
@@ -16,14 +17,17 @@ export default function OrganiserCard({ organiser }) {
   return (
     <View style={ui.centerAlign}>
       <Text style={text.subtitle}>Organiser</Text>
-      <Text style={[text.body, { marginBottom: 20 }]}>{user.name}</Text>
       <Image
-        style={ui.avatar}
+        style={[ui.avatar, { width: 100, height: 100, marginBottom: 10 }]}
         source={{
           uri: user.avatarUrl,
         }}
         accessibilityLabel="Organiser Picture"
       />
+      <View style={{ flexDirection: "row" }}>
+        <Text style={[text.body, { paddingRight: 10 }]}>{user.name}</Text>
+        <MaterialIcons name="verified" color="#212121" size={25} />
+      </View>
     </View>
   );
 }
