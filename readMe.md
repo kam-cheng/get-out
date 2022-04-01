@@ -19,6 +19,19 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 <br/>
 
+## Link to our apk (can be run on android devices)
+
+---
+
+[Download Link](https://expo.dev/artifacts/eas/j3WiqqvYhFLwrpCtBwEwZF.apk)
+
+Once downloaded, ensure that you have enabled apk installation from external sources. [Guide here](https://www.expressvpn.com/support/vpn-setup/enable-apk-installs-android/)
+
+If you are unable to install the app using google chrome, we recommend using [ES File Explorer](https://es-file-explorer.en.uptodown.com/android)
+
+Once enabled, click on the .apk file to install.
+<br/>
+
 ## Tech Stack
 
 ---
@@ -83,7 +96,7 @@ As we are using Expo’s bare workflow, due to App's integration with React Nati
 
 ---
 
-In the termal input the following:
+In the terminal input the following:
 
 ```bash
 npx react-native start
