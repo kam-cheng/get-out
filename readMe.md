@@ -25,7 +25,9 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 [Download Link](https://expo.dev/artifacts/eas/j3WiqqvYhFLwrpCtBwEwZF.apk)
 
-Once downloaded, ensure that you have enabled apk installation from external sources. [Guide here](https://www.expressvpn.com/support/vpn-setup/enable-apk-installs-android/)
+If you have an emulator installed, simply drag the downloaded file to the emulator, and open it in the app drawer.
+
+For android devices, ensure that you have enabled apk installation from external sources. [Guide here](https://www.expressvpn.com/support/vpn-setup/enable-apk-installs-android/)
 
 If you are unable to install the app using google chrome, we recommend using [ES File Explorer](https://es-file-explorer.en.uptodown.com/android)
 
