@@ -53,7 +53,5 @@ buck-out/
 .expo/
 web-build/
 dist/
-key/
 
-# Maps
-key/
+
