@@ -4,10 +4,10 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 #
 
-<img src="../get-out/screenshots/homepage.png" style="width:200px;"/>
-<img src="../get-out/screenshots/activityList.png" style="width:200px;">
-<img src="../get-out/screenshots/organiser.png" style="width:200px;">
-<img src="../get-out/screenshots/userProfile.png" style="width:200px;">
+<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/homepage.png?alt=media&token=a6d5ca93-2c8e-4894-90db-0363c8185d2f" style="width:200px;"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/activityList.png?alt=media&token=c655b0e5-4a14-43f6-809b-139b2ad8273b" style="width:200px;">
+<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/organiser.png?alt=media&token=4a61fca3-8706-4ffd-b89d-e5176cd47856" style="width:200px;">
+<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/userProfile.png?alt=media&token=20a6009a-dd27-44c4-90db-b10c2f386c7c" style="width:200px;">
 
 <br/>
 
@@ -19,7 +19,7 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 <br/>
 
-## Tech stack we used
+## Tech Stack
 
 ---
 
@@ -30,17 +30,36 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 <br/>
 
-## Install
+## Installation Instructions
 
----
+In your terminal input the following:
 
 ```bash
+git clone https://github.com/kam-cheng/get-out.git
+cd get-out
 npm install
+```
+
+As Go Out! uses [react-native-google-autoplaces-complete](https://github.com/FaridSafi/react-native-google-places-autocomplete), you will need to add your own API key to the App.
+
+To do so, get your [Google Places API keys](https://developers.google.com/maps/documentation/places/web-service/get-api-key/) and enable "Google Places API" in the console. Billing must be enabled on the account.
+
+In the get-out directory create the folder `key`.
+
+Inside the folder, create the file `Maps.js`.
+
+In the file, input the following (replacing YOUR_API_KEY with the google places API key):
+
+```
+const MAPS_API_KEY = YOUR_API_KEY;
+
+export default MAPS_API_KEY;
+
 ```
 
 <br/>
 
-## Minimum Versions
+## Minimum Versions Supported
 
 ---
 
@@ -54,15 +73,17 @@ npm install
 
 For development purposes you will need to set up [React Native](https://reactnative.dev/docs/environment-setup).
 
-You will need [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/) to run the app.
+In order ot load the app on an android device, you will need to set up an emulator. We recommend using [Android Emulator](https://docs.expo.dev/workflow/android-studio-emulator/) to run the app.
 
-We’re using Expo’s bare workflow due to the integration with react native firebase, so you will not be able to load the app using expo go.
+As we are using Expo’s bare workflow, due to App's integration with React Native Firebase, you will not be able to load the app using Expo Go.
 
 <br/>
 
-## To run the app
+## Running the App
 
 ---
+
+In the termal input the following:
 
 ```bash
 npx react-native start
@@ -71,7 +92,7 @@ npx react-native run-android
 
 <br/>
 
-## Features
+## App Features
 
 ---
 
