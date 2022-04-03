@@ -23,7 +23,7 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 ---
 
-[Download Link](https://expo.dev/artifacts/eas/j3WiqqvYhFLwrpCtBwEwZF.apk)
+[Download Link](https://expo.dev/artifacts/eas/iKvvGsgkGUkoCSwqLVTdY5.apk)
 
 ### Emulator Recommended:
 
