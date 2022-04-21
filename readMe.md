@@ -4,10 +4,7 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 #
 
-<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/homepage.png?alt=media&token=a6d5ca93-2c8e-4894-90db-0363c8185d2f" style="width:200px;"/>
-<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/activityList.png?alt=media&token=c655b0e5-4a14-43f6-809b-139b2ad8273b" style="width:200px;">
-<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/organiser.png?alt=media&token=4a61fca3-8706-4ffd-b89d-e5176cd47856" style="width:200px;">
-<img src="https://firebasestorage.googleapis.com/v0/b/get-out-21a4f.appspot.com/o/userProfile.png?alt=media&token=20a6009a-dd27-44c4-90db-b10c2f386c7c" style="width:200px;">
+<img src="https://cdn.sanity.io/images/szpc1ivf/production/4bf57dbb32db59b3c7f929c911acbf964e83bde8-1536x1080.jpg="width:1000px;"/>
 
 <br/>
 
