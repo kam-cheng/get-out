@@ -4,7 +4,7 @@ Go Out! is a mobile app that gives its users the platform to find, attend, and o
 
 #
 
-<img src="https://cdn.sanity.io/images/szpc1ivf/production/4bf57dbb32db59b3c7f929c911acbf964e83bde8-1536x1080.jpg="width:600px;"/>
+![Preview](https://github.com/kam-cheng/Go-Out/tree/main/assets/images/Screens.jpg)
 
 <br/>
 
