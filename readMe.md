@@ -2,9 +2,9 @@
 
 Go Out! is a mobile app that gives its users the platform to find, attend, and organise a range of interesting activities that they enjoy, within the local area. All activities are organised by fellow users, giving them the opportunity to connect with like-minded people, hopefully increasing the sense of community within its local user base.
 
-#
+# Preview
 
-![Preview](https://github.com/kam-cheng/Go-Out/tree/main/assets/images/Screens.jpg)
+![Preview](https://github.com/kam-cheng/Go-Out/blob/main/assets/images/preview.jpg)
 
 <br/>
 
