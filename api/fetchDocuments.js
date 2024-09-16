@@ -1,10 +1,12 @@
 import firestore from "@react-native-firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import UserContext from "../context/User";
 
 const fetchDocuments = (
   { collection, key, query, setState, value, time = ">=", order = "asc" },
   setLoading
 ) => {
+  const { user } = useContext(UserContext);
   const currentTime = firestore.Timestamp.now();
   const ref = firestore()
     .collection(collection)
@@ -35,7 +37,7 @@ const fetchDocuments = (
     return function cleanup() {
       setLoading(false);
     };
-  }, []);
+  }, [user]);
 };
 
 export default fetchDocuments;

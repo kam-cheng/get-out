@@ -5,21 +5,24 @@ import UserContext from "../context/User";
 import { ui, text } from "../theme";
 import ActivitiesList from "../containers/ActivitiesList";
 import CustomButton from "../components/ui/CustomButton";
-import Separator from "../components/ui/Separator";
+import UserDropdown from "../components/UserDropdown";
 
 export default function ProfileScreen({ navigation }) {
   const { user } = useContext(UserContext);
-
   return (
     <ScrollView>
       <View style={ui.profileHeaderContainer}>
         <View style={ui.centerAlign}>
           <Text style={text.body}>Welcome Back</Text>
           <Text style={text.sectionTitle}>{user.name}</Text>
+          <View>
+            <Text>Not you?</Text>
+            <UserDropdown />
+          </View>
           <Image
             style={ui.avatar}
             source={{
-              uri: user.avatar,
+              uri: user.avatarUrl,
             }}
             accessibilityLabel="Profile Picture"
           />

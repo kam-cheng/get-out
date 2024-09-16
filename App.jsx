@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+/* eslint-disable react/no-unstable-nested-components */
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import HomeScreen from "./screens/Home"; // unused?
 import HomeStack from "./navigation/HomeStack";
 import ProfileStack from "./navigation/ProfileStack";
 import UserContext from "./context/User";
 import MapStack from "./navigation/MapStack";
+import fetchCollection from "./api/fetchCollection";
 
 // importing global theme
 import { colors } from "./theme";
@@ -14,22 +15,12 @@ import { colors } from "./theme";
 const Tab = createBottomTabNavigator();
 
 function App() {
-  const [user, setUser] = useState({
-    name: "Bender",
-    avatar:
-      "https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg",
-    rating: 5,
-    verified: true,
-    locationId: {
-      _latitude: 53.48346273455076,
-      _longitude: -2.243033295129627,
-    },
-    location: "Manchester",
-    geohash: "gcpvj1k18",
-  });
-
-  // THIS IS WHAT THE GEOLOCATION LOOKS LIKE IN JS
-  // "locationId": {"_latitude": 51.50795973303849, "_longitude": -0.3234002831740929}
+  const [user, setUser] = useState();
+  useEffect(() => {
+    fetchCollection("users").then((users) => {
+      setUser(users[1]);
+    });
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
